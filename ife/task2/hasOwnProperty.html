@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+</body>
+
+
+    <script type="text/javascript">
+        window.onload = function(){
+            // var buz = {
+            //   fog: 'stack'
+            // };
+            var buz = "dfa";
+
+            for (var name in buz) {
+              if (buz.hasOwnProperty(name)) {
+                alert('this is fog (' + name + ') for sure. Value: ' + buz[name]);
+              }
+              else {
+                alert(name); // toString or something else
+                 并没有toString???
+              }
+            }
+        };
+    </script>
+</html>

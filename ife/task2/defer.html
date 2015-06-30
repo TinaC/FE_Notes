@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Script Defer Example</title>
+</head>
+<body>
+
+</body>
+
+    <!-- 这段代码在页面处理过程中弹出三次对话框。不支持 defer 属性的浏览器的弹出顺序是：“defer”、“script”、“load”。而在支持 defer 属性的浏览器上，弹出的顺序则是：“script”、“defer”、“load”。请注意，带有 defer 属性的<script>元素不是跟在第二个后面执行，而是在 onload 事件被触发前被调用
+    在有 async 的情况下，JavaScript 脚本一旦下载好了就会执行 -->
+     <script type="text/javascript" async>
+        alert("async");
+    </script>
+
+    <script type="text/javascript" defer>
+        alert("defer");
+    </script>
+
+    <script type="text/javascript">
+        alert("script");
+    </script>
+    <script type="text/javascript">
+        window.onload = function(){
+            alert("load");
+        };
+    </script>
+    <!-- defer 属性只被 IE 4 和 Firefox 3.5 更高版本的浏览器所支持，chrome不支持啊摔 -->
+</html>
