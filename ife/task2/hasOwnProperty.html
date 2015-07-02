@@ -5,14 +5,14 @@
 <body>
 
 </body>
-
+<!-- https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty -->
 
     <script type="text/javascript">
         window.onload = function(){
-            // var buz = {
-            //   fog: 'stack'
-            // };
-            var buz = "dfa";
+            var buz = {
+              fog: 'stack'
+            };
+            // var buz = "dfa";  //d,f,a分别显示，装箱
 
             for (var name in buz) {
               if (buz.hasOwnProperty(name)) {
@@ -20,7 +20,7 @@
               }
               else {
                 alert(name); // toString or something else
-                 并没有toString???
+                 // 并没有toString：toString默认隐藏了
               }
             }
         };

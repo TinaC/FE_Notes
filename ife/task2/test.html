@@ -5,6 +5,56 @@
 	<title>Document</title>
 </head>
 <body>	
-	<script src="util.js"></script>
+	<!--  	<script src="util.js"></script>  -->
+
+	<script src="owl_util.js"></script>
+	<script>
+		function clone(obj) {
+		    // A clone of an object is an empty object 
+		            // with a prototype reference to the original.
+
+		    // a private constructor, used only by this one clone.
+		            function Clone() { } 
+		    Clone.prototype = obj;
+		    var c = new Clone();
+		            c.constructor = Clone;
+		            return c;
+		}
+
+		window.onload = function(){
+			// var original = { a:'A', b:'B' };
+			// console.log("***"+clone(original));
+var original = {
+    a: 1,
+    b: {
+        b1: ["hello", "hi"],
+        b2: "JavaScript"
+    }
+};
+
+			var clone = owl.util.clone(original);
+				// clone.a == 'A'
+				// clone.b == 'B'
+				console.log(clone.a);
+				console.log(clone.b);
+				clone.a = 'Apple';
+				console.log(clone.a);
+				// original.a == 'A'  // unchanged
+				original.b = 'Banana'
+				console.log(clone.b);
+				// clone.b == 'Banana'  // change shows through
+				clone.c = 'Car'
+				console.log(clone.c);
+				// original.c is undefined
+				original.a = 'Abracadabra'
+				console.log(clone.a);
+				// clone.a == 'Apple'  // clone's new value hides the original's
+				
+				delete clone.a
+				console.log(original.a);
+				// clone.a = 'Abracadabra'  // original value visible again
+				// repeating "delete clone.a" won't delete the original's value.
+		}
+	</script>
 </body>
 </html>
