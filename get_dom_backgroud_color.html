@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>获取background-color</title>
+<style type="text/css">
+	.div{width:90px;height:90px;}
+	.parentDiv{background-color:green;}
+	.div3{background-color:yellow;}
+	.div5{opacity:0;}
+	.div6{visibility:hidden;}
+</style>
+</head>
+<body style="background-color: blue;">
+	<div class="parentDiv">
+		<div id="elem1" class="div div1">
+			div1
+		</div>
+	</div>
+	<div id="elem2" class="div div2" style="background-color:red;">
+		div2
+	</div>
+	<div id="elem3" class="div div3">
+		div3
+	</div>
+	<div id="elem4" class="div">
+		div4
+	</div>
+	<div id="elem5" class="div div5">
+		div5
+	</div>
+	<div style="background-color: gray;">
+		<div id="elem6" class="div div6">
+			div6
+		</div>
+	</div>
+
+	<script type="text/javascript">
+        (function(WDS){
+            console.log(WDS);
+
+            function getStyle(ele, property) {
+                if(!ele || !property) {
+                    return false;
+                }
+
+                if(window && window.getComputedStyle) {
+                    const style = window.getComputedStyle(element),
+                        value = style.getPropertyValue(property);
+                }
+
+                return value;
+            }
+
+            function getRealBg(ele) {
+                const bg = getStyle(ele, 'background-color');
+                if(checkBg(ele)) {
+                    return bg;
+                // if it is not <html>
+                }else if(ele !== document.documentElement) {
+                    return getRealBg(ele.parentNode);
+                }
+
+                return "";
+            }
+
+            return getRealBg;
+        })(window.WDS || (window.WDS = {}))
+        
+
+		// 检测结果
+		var elem1 = document.getElementById("elem1"),
+			elem2 = document.getElementById("elem2"),
+			elem3 = document.getElementById("elem3"),
+			elem4 = document.getElementById("elem4"),
+			elem5 = document.getElementById("elem5"),
+			elem6 = document.getElementById("elem6");
+
+		console.log("div1 background-color:"+WDS.getRealBg(elem1));
+		console.log("div2 background-color:"+WDS.getRealBg(elem2));
+		console.log("div3 background-color:"+WDS.getRealBg(elem3));
+		console.log("div4 background-color:"+WDS.getRealBg(elem4));
+		console.log("div5 background-color:"+WDS.getRealBg(elem5));
+		console.log("div6 background-color:"+WDS.getRealBg(elem6));
+	</script>
+</body>
+</html>
