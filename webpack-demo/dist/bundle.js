@@ -181,6 +181,17 @@ eval("module.exports = __webpack_require__.p + \"31a5f31cdb54b6242126bc86938cbe2
 
 /***/ }),
 
+/***/ "./src/data.xml":
+/*!**********************!*\
+  !*** ./src/data.xml ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = {\"note\":{\"to\":[\"Mary\"],\"from\":[\"John\"],\"heading\":[\"Reminder\"],\"body\":[\"Call Cindy on Tuesday\"]}}\n\n//# sourceURL=webpack:///./src/data.xml?");
+
+/***/ }),
+
 /***/ "./src/image.jpg":
 /*!***********************!*\
   !*** ./src/image.jpg ***!
@@ -200,7 +211,7 @@ eval("module.exports = __webpack_require__.p + \"d059e3baf9d45cfe3fd0e82a571fa03
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _image_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./image.jpg */ \"./src/image.jpg\");\n/* harmony import */ var _image_jpg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_image_jpg__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\nfunction component() {\n    var element = document.createElement('div');\n   \n    element.innerHTML = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.join(['Hello', 'webpack'], ' ');\n    element.classList.add('hello');\n\n    // Add the image to our existing div\n    var myImage = new Image();\n    myImage.src = _image_jpg__WEBPACK_IMPORTED_MODULE_2___default.a;\n\n    element.appendChild(myImage)\n\n    return element;\n}\n\ndocument.body.appendChild(component());\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodash.js\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _image_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./image.jpg */ \"./src/image.jpg\");\n/* harmony import */ var _image_jpg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_image_jpg__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _data_xml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./data.xml */ \"./src/data.xml\");\n/* harmony import */ var _data_xml__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_data_xml__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\n\nfunction component() {\n    var element = document.createElement('div');\n   \n    element.innerHTML = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.join(['Hello', 'webpack'], ' ');\n    element.classList.add('hello');\n\n    // Add the image to our existing div\n    var myImage = new Image();\n    myImage.src = _image_jpg__WEBPACK_IMPORTED_MODULE_2___default.a;\n\n    element.appendChild(myImage)\n\n    console.log(_data_xml__WEBPACK_IMPORTED_MODULE_3___default.a);\n\n    return element;\n}\n\ndocument.body.appendChild(component());\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
