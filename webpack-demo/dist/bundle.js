@@ -78,7 +78,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var escape = __webpack_require__(/*! ../node_modules/css-loader/lib/url/escape.js */ \"./node_modules/css-loader/lib/url/escape.js\");\nexports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \".hello {\\n    color: red;\\n    background: url(\" + escape(__webpack_require__(/*! ./image.jpg */ \"./src/image.jpg\")) + \");\\n}\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/style.css?./node_modules/css-loader");
+eval("var escape = __webpack_require__(/*! ../node_modules/css-loader/lib/url/escape.js */ \"./node_modules/css-loader/lib/url/escape.js\");\nexports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \"@font-face {\\n    font-family: 'MyFont';\\n    src:    url(\" + escape(__webpack_require__(/*! ./baloo-chettan-v3-latin-regular.woff2 */ \"./src/baloo-chettan-v3-latin-regular.woff2\")) + \") format('woff2'),\\n            url(\" + escape(__webpack_require__(/*! ./baloo-chettan-v3-latin-regular.woff */ \"./src/baloo-chettan-v3-latin-regular.woff\")) + \") format('woff');\\n    font-weight: 600;\\n    font-style: normal;\\n}\\n\\n.hello {\\n    color: red;\\n    font-family: 'MyFont';\\n    background: url(\" + escape(__webpack_require__(/*! ./image.jpg */ \"./src/image.jpg\")) + \");\\n}\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/style.css?./node_modules/css-loader");
 
 /***/ }),
 
@@ -156,6 +156,28 @@ eval("var g;\r\n\r\n// This works in non-strict mode\r\ng = (function() {\r\n\tr
 /***/ (function(module, exports) {
 
 eval("module.exports = function(module) {\r\n\tif (!module.webpackPolyfill) {\r\n\t\tmodule.deprecate = function() {};\r\n\t\tmodule.paths = [];\r\n\t\t// module.parent = undefined by default\r\n\t\tif (!module.children) module.children = [];\r\n\t\tObject.defineProperty(module, \"loaded\", {\r\n\t\t\tenumerable: true,\r\n\t\t\tget: function() {\r\n\t\t\t\treturn module.l;\r\n\t\t\t}\r\n\t\t});\r\n\t\tObject.defineProperty(module, \"id\", {\r\n\t\t\tenumerable: true,\r\n\t\t\tget: function() {\r\n\t\t\t\treturn module.i;\r\n\t\t\t}\r\n\t\t});\r\n\t\tmodule.webpackPolyfill = 1;\r\n\t}\r\n\treturn module;\r\n};\r\n\n\n//# sourceURL=webpack:///(webpack)/buildin/module.js?");
+
+/***/ }),
+
+/***/ "./src/baloo-chettan-v3-latin-regular.woff":
+/*!*************************************************!*\
+  !*** ./src/baloo-chettan-v3-latin-regular.woff ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"b986152bf292dfe72bc06a0932862592.woff\";\n\n//# sourceURL=webpack:///./src/baloo-chettan-v3-latin-regular.woff?");
+
+/***/ }),
+
+/***/ "./src/baloo-chettan-v3-latin-regular.woff2":
+/*!**************************************************!*\
+  !*** ./src/baloo-chettan-v3-latin-regular.woff2 ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"31a5f31cdb54b6242126bc86938cbe23.woff2\";\n\n//# sourceURL=webpack:///./src/baloo-chettan-v3-latin-regular.woff2?");
 
 /***/ }),
 
