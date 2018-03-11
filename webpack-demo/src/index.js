@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import './style.css';
-import Image from './image.jpg';
+import ImageSrc from './image.jpg';
 
 function component() {
     var element = document.createElement('div');
@@ -10,7 +10,7 @@ function component() {
 
     // Add the image to our existing div
     var myImage = new Image();
-    myImage.src = Image;
+    myImage.src = ImageSrc;
 
     element.appendChild(myImage)
 
