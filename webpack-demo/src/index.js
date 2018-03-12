@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import './style.css';
-import ImageSrc from './image.jpg';
+// import ImageSrc from './image.jpg';
 import Data from './data.xml';
 import printMe from './print.js'
 
@@ -11,11 +11,11 @@ function component() {
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
     element.classList.add('hello');
 
-    // Add the image to our existing div
-    var myImage = new Image();
-    myImage.src = ImageSrc;
+    // // Add the image to our existing div
+    // var myImage = new Image();
+    // myImage.src = ImageSrc;
 
-    element.appendChild(myImage)
+    // element.appendChild(myImage)
 
     console.log(Data);
 
