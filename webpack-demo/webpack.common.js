@@ -1,6 +1,6 @@
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebapckPlugin = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
@@ -9,15 +9,11 @@ module.exports = {
     print: './src/print.js',
     another: './src/another-module.js'
   },
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist'
-  },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Code Splitting'
+      title: 'Production'
     }),
-    new CleanWebapckPlugin(['dist']),
     new ManifestPlugin()
   ],
   output: {
