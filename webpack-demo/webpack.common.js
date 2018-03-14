@@ -1,11 +1,12 @@
 const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    index: './src/index.js',
     print: './src/print.js',
     another: './src/another-module.js'
   },
@@ -16,6 +17,15 @@ module.exports = {
     }),
     new ManifestPlugin()
   ],
+  optimization: {
+    runtimeChunk: true,
+    splitChunks: {
+        chunks: "initial",
+        cacheGroups: {
+            default: false
+        }
+    }
+  },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
