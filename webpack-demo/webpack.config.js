@@ -2,22 +2,27 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebapckPlugin = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './src/index.js',
-    print: './src/print.js'
+    app: './src/index.js'
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    hot: true
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management'
+      title: 'Hot Module Replacement'
     }),
     new CleanWebapckPlugin(['dist']),
-    new ManifestPlugin()
+    new ManifestPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new UglifyJSPlugin()
   ],
   output: {
     filename: '[name].bundle.js',
