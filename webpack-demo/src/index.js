@@ -31,7 +31,16 @@ function component() {
         "5 cubed is equal to " + cube(5)
     ].join("\n\n");
 
-    return element;
+    // return element;
+
+       return import(/* webpackChunkName: "lodash" */ 'lodash').then(_ => {
+         var element = document.createElement('div');
+    
+         element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    
+         return element;
+    
+       }).catch(error => 'An error occurred while loading the component');
 }
 
 document.body.appendChild(component());
