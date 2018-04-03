@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Count down</title>
+		<meta charset="utf-8">
+		<script>
+            "use strict"
+            
+            function onStart() {
+                var time = document.getElementById("time");
+
+                setInterval(function() {
+                    time.value = time.value --;
+                }, 1000);
+            }
+		</script>
+	</head>
+	<body>
+        <button type="button" onclick="onStart()">start</button>
+        <span id="time">60</span>
+    </body>
+</html>

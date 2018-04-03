@@ -6,28 +6,18 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
   entry: {
-    index: './src/index.js',
-    print: './src/print.js',
-    another: './src/another-module.js'
+    index: './src/index.js'
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Production'
+      title: 'Code Splitting'
     }),
     new ManifestPlugin()
   ],
-  optimization: {
-    runtimeChunk: true,
-    splitChunks: {
-        chunks: "initial",
-        cacheGroups: {
-            default: false
-        }
-    }
-  },
   output: {
     filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
