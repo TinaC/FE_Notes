@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Center</title>
+		<meta charset="utf-8">
+		<script>
+       
+        </script>
+        <style>
+
+        </style>
+	</head>
+	<body>
+        <div>
+            <h2>CENTERING LINES OF TEXT </h2>
+            <!-- 在p的width中，这时p没有margin -->
+            <p style="text-align: center;">
+                The lines in this paragraph are all
+                centered between the paragraph's margins, thanks to the value
+                'center' of the CSS property 'text-align'.                
+            </p>
+
+            <h2>CENTERING A BLOCK OR IMAGE </h2>
+            <!-- p必须要有宽度，否则auto的margin是0 -->
+            <p style="width:8rem; margin: 2px auto">
+                This rather narrow block of text is centered. Note that the lines inside the block are not centered (they are left-aligned), unlike in the earlier example.
+            </p>
+
+            <!-- img的默认display是inline -->
+            <img src="woolly-mc.png" alt="" style="display: block; margin: 2px auto">
+        
+            <hr/>
+        
+            <!-- CENTERING VERTICALLY -->
+            <h2>CENTERING VERTICALLY</h2>
+           
+
+            <div style="background-color: royalblue; min-height: 10em; display: table-cell; vertical-align: middle">
+                <p>Note that vertical-align only applies to inline and table-cell elements: you can't use it to vertically align block-level elements.</p>
+            </div>
+
+            <div style="height: 10em; background-color:brown; position: relative;">
+                <p style="position: absolute; top: 50%; transform: translate(0, -50%)">Note that vertical-align only applies to inline and table-cell elements: you can't use it to vertically align block-level elements.</p>
+            </div>
+        </div>
+
+    </body>
+</html>
