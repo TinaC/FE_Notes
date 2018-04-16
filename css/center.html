@@ -53,34 +53,135 @@
                 margin-right: -50%;
                 transform: translate(-50%, -50%) 
             }
+            
+            h2 {
+                color: tomato;
+            }
+
+            h3 {
+                color: darkviolet;
+            }
+
+            main div {
+                background: black;
+                color: white;
+                padding: 15px;
+                max-width: 125px;
+                margin: 5px;
+            }
+
+            .inline-block-center {
+                text-align: center;
+            }
+            .inline-block-center div {
+                display: inline-block;
+                /* text-align: left; */
+            }
+
+            .flex-center {
+                display: flex;
+                justify-content: center;
+            }
+
+            .ghost-center {
+                position: relative;                   
+                background: white;
+                width: 240px;
+                height: 200px;
+                margin: 20px;
+                color: white;
+                resize: vertical;
+                overflow: auto;
+                padding: 20px;
+            }
+            .ghost-center::before {
+                content: " ";
+                display: inline-block;
+                height: 100%;
+                width: 1%;
+                vertical-align: middle;
+            }
+            .ghost-center p {
+                display: inline-block;
+                vertical-align: middle;
+                width: 190px;
+                margin: 0;
+                padding: 20px;
+                background: black;
+                color: white;
+            }
         </style>
 	</head>
 	<body>
         <div>
-            <h2>CENTERING LINES OF TEXT </h2>
+            <h1>水平居中</h1>
+            <h2>* display: inline-* element, 在display:block的父元素设置text-align: center</h2>
             <!-- 在p的width中，这时p没有margin -->
             <p style="text-align: center;">
-                The lines in this paragraph are all
+               
+                <span style="background: brown"> inline的span在block的p中，p设置为text-align: center, span就能水平居中 The lines in this paragraph are all
                 centered between the paragraph's margins, thanks to the value
-                'center' of the CSS property 'text-align'.                
+                'center' of the CSS property 'text-align'. </span>      
+
+                <span style="display: block; width: 50%; background: blue"> span设置为display:block, 就不能居中了 The lines in this paragraph are all
+                        centered between the paragraph's margins, thanks to the value
+                        'center' of the CSS property 'text-align'. </span>  
+                        
+                <span style="display: block; width: 50%; margin: 0 auto; background:darkgreen"> span设置为display:block, 就不能居中了, 这时候需要用到margin: 0 auto. The lines in this paragraph are all
+                        centered between the paragraph's margins, thanks to the value
+                        'center' of the CSS property 'text-align'. </span>   
             </p>
 
-            <h2>CENTERING A BLOCK OR IMAGE </h2>
+            <h2>* display: block元素，用margin: 0 auto </h2>
             <!-- p必须要有宽度，否则auto的margin是0 -->
-            <p style="width:8rem; margin: 2px auto">
+            <p style="width:8rem; margin: 2px auto">这个 &ltp&gt 设置了margin: 2px auto
                 This rather narrow block of text is centered. Note that the lines inside the block are not centered (they are left-aligned), unlike in the earlier example.
             </p>
 
             <!-- img的默认display是inline -->
             <img src="woolly-mc.png" alt="" style="display: block; margin: 2px auto">
         
-            <hr/>
+            <h2>* 多个元素水平放置，如果三个元素是垂直排列的，分别设置margin:0 auto也行</h2>
+            <h3>方案1. 子元素设置为inline-block, block父元素设置text-align: center. 子元素里面如果有字，可以在设置text-algin: left;</h3>
+            <main class="inline-block-center">
+                <div>
+                    I'm an element that is block-like with my siblings and we're centered in a row.
+                </div>
+                <div>
+                    I'm an element that is block-like with my siblings and we're centered in a row. I have more content in me than my siblings do.
+                </div>
+                <div>
+                    I'm an element that is block-like with my siblings and we're centered in a row.
+                </div>
+            </main>
+            
+            <h3>方案2。父元素container 设置display: flex; justify-content: center;</h3>
+            <main class="flex-center">
+                <div>
+                    I'm an element that is block-like with my siblings and we're centered in a row.
+                </div>
+                <div>
+                    I'm an element that is block-like with my siblings and we're centered in a row. I have more content in me than my siblings do.
+                </div>
+                <div>
+                    I'm an element that is block-like with my siblings and we're centered in a row.
+                </div>
+            </main>
         
+            <hr/>
+
             <!-- CENTERING VERTICALLY -->
             <h2>CENTERING VERTICALLY</h2>       
+            <h1>垂直居中</h1>
+            <h2>Is it inline or inline-* elements (like text or links)?</h2>
+            <h3>* 单行display: inline-* element, 使用padding-top=padding-bottom,或者用line-height=height <h2>
+           
+            <div>
+                <a href="#0" style="background: black; color: white; padding: 30px 40px">单行inline元素设置padding-top = padding-botton</a>
+            </div>
 
-            <div style="background-color: royalblue; min-height: 10em; display: table-cell; vertical-align: middle">
-                <p>Note that vertical-align only applies to inline and table-cell elements: you can't use it to vertically align block-level elements.</p>
+            <div>
+                <a href="#0" style="background: black; color: white; padding: 30px 40px; display: inline-block;">inline-block也一样</a>
             </div>
 
             <div style="background-color: burlywood; min-height: 10em;">
@@ -109,7 +210,127 @@
                 <p>This text block is vertically centered.
                 <p>Horizontally, too, if the window is wide enough.
             </section>
+            <div style="height: 100px; line-height: 100px; padding: 20px; width: 50%; white-space: nowrap;  background: black; color: red;">
+                如果确定不会换行，只是单行文字的话，并且知道height的话。可以设置line-height = height。 如果没有设置white-space: nowrap,(default white-space: normal;换行) 并且文字多于一行，就会直接换行出container了。
+            </div>
+
+            <h3>* 多行, 1. 设置padding依然OK. 2. display: table, table元素规定的垂直居中的</h2>
+
+            <table style="background: tomato; width: 240px; height: 240px;"> 
+                <tr>
+                    <td>
+                    1. 直接放在一个&lttable&gt的&lttd&gt里
+                    </td>
+                </tr>
+            </table>
+
+            <div style="display: table; height: 240px; ">
+                <p style="display: table-cell; background: black; color: white; vertical-align: middle; width: 400px;">
+                    2. 或者用display: table / table-cell + vertical-align: middle; </br>
+                    使用Note that vertical-align only applies to inline and table-cell elements: you can't use it to vertically align block-level elements.
+                    vertical-align only applies to inline and table-cell elements: you can't use it to vertically align block-level elements. </br>
+                    vertical-align只适用于inline / table-cell 元素
+                </p>
+            </div>
+
+            <div style="display: flex; justify-content: center; flex-direction: column; height: 10em; background-color:brown;">
+                <p style="">
+                    3. flex : display: flex; justify-content: center; flex-direction: column; </br>   
+                    flex-direction: column;  让元素垂直排列，justify-content: center才能让元素垂直居中 </br>   
+                    否则justify-content: center应该是默认让元素水平排列
+
+                </p>
+            </div>
+
+            <div class="ghost-center">
+                <p>4. I'm vertically centered multiple lines of text in a container. Centered with a ghost pseudo element<br/>
+                a full-height pseudo element is placed inside the container and the text is vertically aligned with that.
+                利用了::before在p的前面添加一个height: 100%的元素，不太懂</p>
+            </div>
+            
         </div>
 
+        <hr/>
+
+        <h2>Is it a block-level element?</h2>
+
+        <h3>如果知道块级父元素的高度</h3>
+
+        <div style=" position: relative; background-color:rgb(165, 52, 52); color: white; width: 400px; height: 300px">
+            position: relative; height: 400px; 
+            <p style="position: absolute; top: 50%;height: 100px; margin-top: -50px; /*transform: translate(0, -50%)*/ background: darkorange">
+                position: absolute; top: 50%; transform: translate(0, -50%) (或者margin-top: -50px;)</br>           
+            </p>
+        </div>
+
+        <h3>如果不知道块级元素的高度</h3>
+
+        <div style=" position: relative; background-color:rgb(165, 52, 52); color: white; width: 400px;  height: 300px;">
+            position: relative; height: 假装不知道 
+            <p style="position: absolute; top: 50%; transform: translate(0, -50%); background: darkorange">
+                position: absolute; top: 50%; transform: translate(0, -50%) (translateY(-50%);)</br>           
+            </p>
+        </div>
+
+        <h3>万能的flex, .parent { display: flex; flex-direction: column; justify-content: center; }</h3>
+
+        <h1>水平 & 垂直居中</h1>
+
+        <h2>元素的高度和宽度是固定的吗</h2>
+
+        <div style=" position: relative; background-color:rgb(165, 52, 52); color: white; width: 400px;  height: 300px;">
+            position: relative; width: 300px;
+            height: 100px;
+            <p style="width: 300px;
+            height: 100px;
+            padding: 20px;
+          
+            position: absolute;
+            top: 50%;
+            left: 50%;
+          
+            margin: -70px 0 0 -170px; background: darkorange">
+            （300 + 20 + 20） / 3
+            position: absolute;
+            top: 50%;
+            left: 50%;
+           margin: -70px 0 0 -170px; </br>      
+           这种方法的兼容性好     
+            </p>
+        </div>
+
+        <h2>元素的高度和宽度是固定的吗</h2>
+
+        <div style=" position: relative; background-color:rgb(165, 52, 52); color: white; width: 400px;  height: 300px;">
+            position: relative; 
+            height: 100px; 
+            <p style="width: 300px;
+            height: 100px;
+            padding: 20px;        
+            position: absolute;
+            top: 50%;
+            left: 50%;        
+            transform: translate(-50%, -50%); background: darkorange">
+            （300 + 20 + 20） / 3
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); </br>      
+            知不知道高度宽度，都可以用这种方法，只是transform的兼容性不太好
+            </p>
+        </div>
+
+        <h2>使用Flexbox   display: flex;
+                justify-content: center;
+                align-items: center;</h2>
+
+        <h2>Grid 
+                 body, html {
+                  height: 100%;
+                  display: grid;
+                }
+                span {
+                  margin: auto;
+                }</h2>
     </body>
 </html>
