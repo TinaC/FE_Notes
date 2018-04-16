@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery.proxy demo</title>
+</head>
+<body>
+<script>
+// alert(foo());//
+// function foo(){
+//     var bar = function() {
+//         return 3;
+//     };
+//     return bar();
+//     var bar = function() {
+//         return 8;
+//     };
+// }
+
+// function foo(){
+//     return bar();
+//     var bar = function() {
+//         return 3;
+//     };
+//     var bar = function() {
+//         return 8;
+//     };
+// }
+// alert(foo());
+
+// "use strict"
+// function foo() {
+//     if(false) {
+//         function x() {};
+//     }
+//     return x;
+// }
+// alert(foo());
+
+
+var hoisted = "foo" in this;
+console.log(`'foo' name ${hoisted ? "is" : "is not"} hoisted. typeof foo is ${typeof foo}`);
+if (false) {
+  function foo(){ return 1; }
+}
+
+</script>
+ 
+</body>
+</html>

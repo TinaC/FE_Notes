@@ -6,21 +6,53 @@
 		<script>
             // "use strict"
 
-            function foo(sth) {
-                this.a = sth;
+            // function foo(sth) {
+            //     this.a = sth;
+            // }
+
+            // var obj1 = {
+            //     foo: foo
+            // }
+
+            // var obj2 = {};
+
+            // obj1.foo(2);
+            // console.log(obj1.a);
+
+            // obj1.foo.call(obj2, 3);
+            // console.log(obj2.a);
+
+            // //new binding 优先级比 隐式绑定高
+            // var bar = new obj1.foo(4);
+            // console.log(bar.a);
+
+            // new binding vs. hard binding
+            // var obj1 = {}
+
+            // var bar = foo.bind(obj1);
+            // bar(2);
+            // console.log(obj1.a);
+
+            // var baz = new bar(3);
+            // console.log(obj1.a);
+            // console.log(baz.a);
+
+            // Why is new being able to override hard binding useful?
+
+            function foo(p1, p2) {
+                this.var = p1 + p2;
             }
 
-            var obj1 = {
-                foo: foo
-            }
+            var objectForBind = {}
 
-            var obj2 = {};
+            var bar = foo.bind(objectForBind, "p1");
+            bar();
+            console.log(objectForBind.var);
+            console.log(bar.var); //undefined, bar is just a function, not used as this object
+            var baz = new bar("p2");
 
-            obj1.foo(2);
-            console.log(obj1.a);
-
-            obj1.foo.call(obj2, 3);
-            console.log(obj2.a)
+            console.log(objectForBind.var)    
+            console.log(baz.var)
 
             // function foo(sth) {
             //     console.log(this.a, sth);

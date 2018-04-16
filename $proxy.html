@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery.proxy demo</title>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+ 
+<p><button type="button" id="test">Test</button></p>
+<div id="log"></div>
+ 
+<script>
+
+var obj = {
+  name: "John",
+  test: function() {
+    $( "#log" ).append( this.name );
+    $( "#test" ).off( "click", obj.test );
+  }
+};
+$( "#test" ).on( "click", jQuery.proxy( obj, "test", "a", "b", "c") );
+
+// var me = {
+//   // I'm a dog
+//   type: "dog",
+ 
+//   // Note that event comes *after* one and two
+//   test: function( one, two, event ) {
+//     $( "#log" )
+ 
+//       // `one` maps to `you`, the 1st additional
+//       // argument in the $.proxy function call
+//       .append( "<h3>Hello " + one.type + ":</h3>" )
+ 
+//       // The `this` keyword refers to `me`
+//       // (the 2nd, context, argument of $.proxy)
+//       .append( "I am a " + this.type + ", " )
+ 
+//       // `two` maps to `they`, the 2nd additional
+//       // argument in the $.proxy function call
+//       .append( "and they are " + two.type + ".<br>" )
+ 
+//       // The event type is "click"
+//       .append( "Thanks for " + event.type + "ing." )
+ 
+//       // The clicked element is `event.target`,
+//       // and its type is "button"
+//       .append( "the " + event.target.type + "." );
+//   }
+// };
+ 
+// var you = { type: "cat" };
+// var they = { type: "fish" };
+ 
+// // Set up handler to execute me.test() in the context
+// // of `me`, with `you` and `they` as additional arguments
+// var proxy = $.proxy( me.test, me, you, they );
+ 
+// $( "#test" )
+//   .on( "click", proxy );
+</script>
+ 
+</body>
+</html>

@@ -7,7 +7,52 @@
        
         </script>
         <style>
+            html, body {
+                margin: 0;
+            }
 
+            p {
+                margin: 0;
+            }
+            .container4 {
+                height: 10em;
+                position: relative;
+                background: gray;
+            }
+            .container4 p {
+                background: yellow;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .container6 {
+                background: forestgreen;
+                height: 10em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container6 p {
+                background: gold;
+                margin: 0
+            }
+
+            section {
+                background: black;
+                color: white;
+                border-radius: 1em;
+                padding: 1em;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                /* left修改了section的width, 需要通过margin-right来改回去。否则在window缩小的时候，会把section挤扁 */
+                margin-right: -50%;
+                transform: translate(-50%, -50%) 
+            }
         </style>
 	</head>
 	<body>
@@ -32,16 +77,38 @@
             <hr/>
         
             <!-- CENTERING VERTICALLY -->
-            <h2>CENTERING VERTICALLY</h2>
-           
+            <h2>CENTERING VERTICALLY</h2>       
 
             <div style="background-color: royalblue; min-height: 10em; display: table-cell; vertical-align: middle">
                 <p>Note that vertical-align only applies to inline and table-cell elements: you can't use it to vertically align block-level elements.</p>
             </div>
 
-            <div style="height: 10em; background-color:brown; position: relative;">
-                <p style="position: absolute; top: 50%; transform: translate(0, -50%)">Note that vertical-align only applies to inline and table-cell elements: you can't use it to vertically align block-level elements.</p>
+            <div style="background-color: burlywood; min-height: 10em;">
+                <p>Note that vertical-align only applies to inline and table-cell elements: you can't use it to vertically align block-level elements.</p>
+                <span style="line-height: 4em; background-color: darkolivegreen; vertical-align: middle">Mutiplelines. Mutiplelines. Mutiplelines. Mutiplelines. Mutiplelines. Note that vertical-align only applies to inline and table-cell elements: you can't use it to vertically align block-level elements.</span>
+                <span style="background-color: darkcyan; vertical-align: middle">Mutiplelines. Mutiplelines. Mutiplelines. Mutiplelines. Mutiplelines. Note that vertical-align only applies to inline and table-cell elements: you can't use it to vertically align block-level elements.</span>
             </div>
+
+            <div style="height: 10em; background-color:brown; position: relative;">
+                <!-- top: 50%; container高度的一半。 transform: translate(0, -50%)Y轴上移元素高度的一半  -->
+                <p style="position: absolute; top: 50%; transform: translate(0, -50%)">position: absolute; top: 50%; transform: translate(0, -50%)</p>
+            </div>
+
+            <h2>CENTERING VERTICALLY AND HORIZONTALLY IN CSS LEVEL 3</h2>
+
+            <div class="container4">
+                <p>use position to center</p>
+            </div>
+
+            <div class="container6">
+                <p>use flex to center</p>
+            </div>
+
+            <section>
+                <h1>Nicely centered</h1>
+                <p>This text block is vertically centered.
+                <p>Horizontally, too, if the window is wide enough.
+            </section>
         </div>
 
     </body>
