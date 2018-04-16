@@ -27,10 +27,6 @@
                 box-sizing: border-box;
             }
 
-            body {
-                background-color: #1D1F1F;
-            }
-
             article {
                 background-color: white;
                 /* padding: 1em; */
@@ -69,14 +65,22 @@
                     width: 95%;
                 }
             }
+
+            .clearfix1::after {
+                content: ".";
+                display: block;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
         </style>
 	</head>
 	<body>
         
         <article style="position: relative;">
-                <figure style="position: absolute;"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/unsplash-daisy.jpg" alt="daisy photographed from below">
-                    <figcaption>Absolute</figcaption>
-                </figure>
+            <figure style="position: absolute;"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/unsplash-daisy.jpg" alt="daisy photographed from below">
+                <figcaption>Absolute</figcaption>
+            </figure>
 
             <h1>Images Floating in the Document Flow</h1>
             <button>Toggle Floats</button>
@@ -98,10 +102,61 @@
         </article>
 
         <div style="background: #dc8; border: 4px solid #000; width: 30%;">
-            <div style="float: left; width: 35%; background: #773; border: 3px solid #f55; color: #ffd">float box超出了他container的宽度。 sectetur qui magnam. Recusandae, hic quidem officia, asperiores sit libero sapiente totam eum.</div>
+            <div style="float: left; width: 35%; background: #773; border: 3px solid #f55; color: #ffd">float box超出了他container的宽度。 sectetur qui magnam. Recusandae, hic quidem officia</div>
                
             <p>This container lacks the fix.</p>
         </div>
 
+        <div style="background: #dc8; border: 4px solid #000; width: 30%;">
+            <div style="float: left; width: 35%; background: #773; border: 3px solid #f55; color: #ffd">float box超出了他container的宽度。 sectetur qui magnam. Recusandae, hic quidem officia</div>
+                
+            <p>被float元素继续挤过来了。可以看到float元素确实存在于文本流。不同于absolute元素。This container lacks the fix.</p>
+        </div>
+
+        <div style="background: #dc8; border: 4px solid #000; width: 30%;">
+            <div style="float: left; width: 35%; background: #773; border: 3px solid #f55; color: #ffd">float box超出了他container的宽度。 sectetur qui magnam. Recusandae, hic quidem officia</div>
+                
+            <p>clear: left; 这样 container 的高度就能包含flex元素的了</p>
+        </div>
+
+        <div style="background: #dc8; border: 4px solid #000; width: 30%; clear: both;">
+            <div style="float: left; width: 35%; background: #773; border: 3px solid #f55; color: #ffd">float box超出了他container的宽度。 sectetur qui magnam. Recusandae, hic quidem officia</div>
+                
+            <p style="clear: both; background: rgb(14, 192, 73)">clear: left; 这样 container 的高度就能包含flex元素的了。试试对div设置clear: both; 以及对p设置clear:both。
+            </br>本质上来说，clear: both是增加了p的top margin，使得它在float元素的下面
+            </p>
+        </div>
+
+        <div style="background: #dc8; border: 4px solid #000; width: 80%;"> <!-- float container -->
+            <div style="float:left; width:50%; background: #773; border: 3px solid #f55; color: #ffd">
+                <p style="">The standard method of making an outer container appear to "enclose" a nested float is to place a complete "cleared" element last in the container, which has the effect of 'dragging' the lower edge of the containing box lower than the float. Thus the float appears to be enclosed within the container even tho it really isn't. 
+                    Since that div is not floated, the container must recognize it and enclose it, and because of that top margin (added by the browser because of the "clear" property), the div "pulls" the bottom edge of the container down below the bottom edge of the float.
+                    
+                </p>
+            </div>    
+            <p>Text not inside the float, clear: both &ltdiv&gt是放在container里面，和float元素是兄弟节点。这样就能保证container的高度包含了float的高度
+                    原理是因为这个div不是floated.container就必须要要包含它。clear属性给这个div加了top margin。这个div pull container的bottom edge到float元素的botton edge 下面. 因为div设置了clear:both, 所以浏览器会给div增加margin-top(假想)，使它在float元素的下面，而不是在它的旁边。从而造成div的container，也就是float的container，为了包含这个div，把高度撑到了和float一样高
+            </p>       
+            <div style="clear:both;"></div>         
+        </div>
+
+        <div style="background: #dc8; border: 4px solid #000; width: 30%;"> <!-- float container -->
+            <div style="float:left; width:30%; background: #773; border: 3px solid #f55; color: #ffd"><p>一个只有float元素的container</p></div>    
+            <div style="float:left; width:30%; background: #773; border: 3px solid #f55; color: #ffd"><p>会collapse, 没有高度</p></div>    
+        </div>
+
+        <h2 style="clear: both">分割一下</h2>
+
+        <div style="background: #dc8; border: 4px solid #000; width: 50%;"  class="clearfix1">
+            <div style="float: left; width: 35%; background: #773; border: 3px solid #f55; color: #ffd">
+                .clearfix:after {
+                    content: ".";
+                    display: block;
+                    height: 0;
+                    clear: both;
+                    visibility: hidden;
+                }
+            </div>    
+        </div>
     </body>
 </html>
