@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Float</title>
+		<meta charset="utf-8">
+		<script>
+       
+        </script>
+        <style>
+            html, body {
+                margin: 0;
+            }
+            .left {
+                float: left;
+                margin-right: 1em;
+            }
+
+            .right {
+                float: right;
+                margin-left: 1em;
+            }
+
+
+            /* Styling for Pen, unrelated to float */
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color: #1D1F1F;
+            }
+
+            article {
+                background-color: white;
+                /* padding: 1em; */
+                width: 65%;
+                margin: 0 auto;
+                border: 5px solid #E18728;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            p {
+                font-family: sans-serif;
+            }
+
+            figure {
+                text-align: center;
+                text-transform: uppercase;
+                padding: .2em;
+                margin: 0;
+            }
+
+            figure img {
+                max-width: 100%;
+            }
+
+            @media all and (max-width: 1100px) {
+                article {
+                    width: 80%;
+                }
+            }
+
+            @media all and (max-width: 950px) {
+                article {
+                    width: 95%;
+                }
+            }
+        </style>
+	</head>
+	<body>
+        
+        <article style="position: relative;">
+                <figure style="position: absolute;"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/unsplash-daisy.jpg" alt="daisy photographed from below">
+                    <figcaption>Absolute</figcaption>
+                </figure>
+
+            <h1>Images Floating in the Document Flow</h1>
+            <button>Toggle Floats</button>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo sequi veniam ea enim nesciunt doloremque delectus sint consectetur qui magnam. Recusandae, hic quidem officia, asperiores sit libero sapiente totam eum.</p>
+            
+            
+            <figure class="l left"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/unsplash-daisy.jpg" alt="daisy photographed from below">
+              <figcaption>Floating Left</figcaption>
+            </figure>
+            <p>Doloribus nisi ratione necessitatibus unde veritatis commodi veniam quas eaque fugiat nihil esse, id? Tempora quis quod impedit quia, facere incidunt, voluptatum dicta in dolores suscipit temporibus quam eos odit?</p>
+            <figure class="r right"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/unsplash-mossy-log.jpg" alt="mossy log with ferns growing out of it">
+              <figcaption>Floating Right</figcaption>
+            </figure>
+            <p>Doloribus nisi ratione necessitatibus unde veritatis commodi veniam quas eaque fugiat nihil esse, id? Tempora quis quod impedit quia, facere incidunt, voluptatum dicta in dolores suscipit temporibus quam eos odit?</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo sequi veniam ea enim nesciunt doloremque delectus sint consectetur qui magnam. Recusandae, hic quidem officia, asperiores sit libero sapiente totam eum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam officiis est, tenetur ut aliquid iste necessitatibus nihil vel harum! Temporibus iure reprehenderit ullam, fugit reiciendis delectus vitae natus sint, velit.</p>
+            <p>Dolore atque nam suscipit sint incidunt reprehenderit quod illo ipsum tempora odio excepturi deserunt esse nisi obcaecati quisquam culpa, asperiores beatae id fugiat sit ipsa. Porro voluptates quasi vero veniam.</p>
+            <p>Doloribus nisi ratione necessitatibus unde veritatis commodi veniam quas eaque fugiat nihil esse, id? Tempora quis quod impedit quia, facere incidunt, voluptatum dicta in dolores suscipit temporibus quam eos odit?</p>
+          </article>
+
+    </body>
+</html>
