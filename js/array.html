@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>array</title>
+		<meta charset="utf-8">
+		<script>
+            function product(arr) {
+                return arr.reduce(function(accumulator, currentValue, currentIndexOptional, arrayOptional){
+                    console.log("x * y : " + accumulator * currentValue);
+                    return accumulator * currentValue;
+                }); 
+            }
+
+            if (product([1, 2, 3, 4]) === 24) {
+                console.log('product([1, 2, 3, 4]) 测试通过!');
+            }
+            else {
+                console.log('product([1, 2, 3, 4]) 测试失败! ' + product([1, 2, 3, 4]));
+                // console.log()
+            } 
+		</script>
+	</head>
+	<body>
+        <p>https://stackoverflow.com/questions/4616694/what-is-event-bubbling-and-capturing</p>
+    </body>
+</html>

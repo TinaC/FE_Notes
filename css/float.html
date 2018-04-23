@@ -149,13 +149,14 @@
 
         <div style="background: #dc8; border: 4px solid #000; width: 50%;"  class="clearfix1">
             <div style="float: left; width: 35%; background: #773; border: 3px solid #f55; color: #ffd">
-                .clearfix:after {
-                    content: ".";
-                    display: block;
-                    height: 0;
-                    clear: both;
-                    visibility: hidden;
-                }
+                .clearfix:after {<br/>
+                    content: "."; <br/>
+                    display: block; // clear只对block元素有效<br/> 
+                    height: 0;<br/>
+                    clear: both;<br/>
+                    visibility: hidden; //隐藏content<br/> 
+                } <br/>
+                IE 7还不支持伪类:after, hasLayout? 
             </div>    
         </div>
     </body>
