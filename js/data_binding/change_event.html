@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>two-way binding</title>
+    </head>
+    <body onload="init()">
+        <pre>Change the value, and the interval will use it.
+        </pre>
+        <input id="foo">
+
+        <script type="text/javascript">
+            function init() {
+                bind();
+            }
+
+            function MyCtor(element, data) {
+                this.data = data;
+                this.element = element;
+                element.value = data;
+                element.addEventListener("change", this, false);
+            }
+
+            // The EventListener method handleEvent() method is called by the user agent when an event is sent to the EventListener, in order to handle events that occur on an observed EventTarget.
+            MyCtor.prototype.handleEvent = function (event) {
+                if (this[event.type]) { 
+                   this[event.type](this.element.value); 
+                } else { 
+                    console.log("Expected %s handler", event.type); 
+                } 
+
+                switch (event.type) {
+                    case "change":
+                        this.mychangehandler(this.element.value);
+                }
+            };
+
+            MyCtor.prototype.mychangehandler = function (value) {
+                this.data = value;
+                this.element.value = value;
+            };
+
+            function bind() { 
+                var obj = new MyCtor(document.getElementById("foo"), "initial");
+
+                // simulate some JS based changes.
+                var i = 0;
+                setInterval(function () {
+                    obj.mychangehandler(obj.element.value + ++i);
+                }, 3000);  
+            }   
+        </script>
+    </body>
+</html>
