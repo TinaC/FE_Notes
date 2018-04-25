@@ -1,0 +1,84 @@
+// data binding
+this.oModels = {};
+this.aPropagationListeners = [];
+this.oBindingContexts = {};
+this.mElementBindingContexts = {};
+this.mBindingInfos = {};
+this.mObjectBindingInfos = {};
+
+/**
+* Bind the object to the referenced entity in the model, which is used as the binding context
+* to resolve bound properties or aggregations of the object itself and all of its children
+* relatively to the given path.
+* If a relative binding path is used, this will be applied whenever the parent context changes.
+*/
+
+
+// Element#bindElement & ManagedObject#bindObject 修改的是 mObjectBindingInfos 
+this.mObjectBindingInfos[sModelName] = oBindingInfo;
+
+oBindingInfo.model = "products"
+oBindingInfo.path = "/Products/2"
+
+/**
+ * Create or update local bindings.
+ *
+ * Called when model or binding contexts have changed. Creates bindings when the model was not available
+ * at the time bindProperty or bindAggregation was called. Recreates the bindings when they exist already
+ * and when the model has changed.
+ */
+
+ManagedObject.prototype.updateBindings
+
+在ManagedObject中，除了set mObjectBindingInfos, 还调用了
+if (this.getModel(sModelName)) {
+    this._bindObject(oBindingInfo);
+}
+
+_bindObject中调用了oBinding.initialize(); which is sap.ui.model.ClientContextBinding.prototype.initialize
+
+ClientContextBinding.prototype.initialize = function() {
+    var that = this;
+    //recreate Context: force update
+    this.oModel.createBindingContext(this.sPath, this.oContext, this.mParameters, function(oContext) {
+        that.oElementContext = oContext;
+        that._fireChange();
+    }, true);
+};
+
+/**
+    * Fire event change to attached listeners.
+    * @param {Map}
+    *         mArguments the arguments to pass along with the event.
+    * @private
+    */
+触发了change 事件！
+Binding.prototype._fireChange = function(mArguments) {
+    this.fireEvent("change", mArguments);
+};
+
+在ManagedObject.prototype._bindObject 中注册了change handler
+var fChangeHandler = function(oEvent) {
+    that.setElementBindingContext(oBinding.getBoundContext(), sModelName);
+};
+
+	ManagedObject.prototype.setElementBindingContext = function(oContext, sModelName){
+		jQuery.sap.assert(sModelName === undefined || (typeof sModelName === "string" && !/^(undefined|null)?$/.test(sModelName)), "sModelName must be a string or omitted");
+		var oOldContext = this.mElementBindingContexts[sModelName];
+
+		if (Context.hasChanged(oOldContext, oContext)) {
+			this.mElementBindingContexts[sModelName] = oContext;
+			this.updateBindingContext(true, sModelName);
+			this.propagateProperties(sModelName);
+			this.fireModelContextChange();
+		}
+		return this;
+	};
+
+	ManagedObject.prototype._propagateProperties 中调用了oObject.updateBindings(bUpdateAll,sName);
+
+    which is 	ManagedObject.prototype.updateBindings 
+
+    this.mBindingInfos 
+
+    

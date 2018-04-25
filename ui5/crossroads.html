@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>This</title>
+        <meta charset="utf-8">
+        <script src="node_modules/signals/dist/signals.js"></script>
+        <script src="node_modules/hasher/dev/src/hasher.js"></script>
+        <script src="node_modules/crossroads/dist/crossroads.js"></script>
+		<script>
+            // "use strict"
+            //setup crossroads
+            crossroads.addRoute('foo');
+            crossroads.addRoute('lorem/ipsum');
+            crossroads.routed.add(console.log, console); //log all routes
+            
+            //setup hasher
+            function parseHash(newHash, oldHash){
+            crossroads.parse(newHash);
+            }
+            hasher.initialized.add(parseHash); //parse initial hash
+            hasher.changed.add(parseHash); //parse hash changes
+            hasher.init(); //start listening for history change
+            
+            //update URL fragment generating new history record
+            hasher.setHash('lorem/ipsum');
+		</script>
+	</head>
+	<body>
+    </body>
+</html>
