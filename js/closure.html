@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>array</title>
+		<meta charset="utf-8">
+		<script>
+            function init() {
+               
+
+                function bar() {
+                    var a = 3;
+                    function foo() {
+                        console.log( a ); // 2
+                    }
+                    foo();
+
+                }
+
+                var a = 2;
+
+                bar();
+
+
+                // for (var i = 1; i <= 5; i++) {
+                //     setTimeout( function timer() {
+                //         console.log(i)
+                //     }, i * 1000)
+                // }
+                       
+                // for (var i = 1; i <= 5; i++) {
+                //     (function() {  
+                //         setTimeout( function timer() {
+                //             // 还是用的是词法作用域里的i
+                //             console.log(i)
+                //         }, i * 1000)
+                //     })();
+                // }
+
+                // for (var i = 1; i <= 5; i++) {
+                //     // 如果这里不把i写成参数，就还是用的词法作用域的i, 因为当前scope找不到i
+                //     (function(i) {  
+                //         setTimeout( function timer() {
+                //             // 这个i是专属于这个IIFE的scope的i
+                //             console.log(i)
+                //         }, i * 1000)
+                //     })(i);
+                // }
+                // // 等同于
+                // for (var i = 1; i <= 5; i++) {
+                //     // argument的赋值 j = i
+                //     (function(j) {  
+                //         setTimeout( function timer() {
+                //             console.log(j)
+                //         }, j * 1000)
+                //     })(i);
+                // }
+            }
+		</script>
+	</head>
+	<body onload="init()">
+    </body>
+</html>
