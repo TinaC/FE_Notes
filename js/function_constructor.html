@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>function constructor</title>
+		<meta charset="utf-8">
+		<script>
+            function init() {
+
+            }
+
+            function Foo() {
+               console.log("create Foo instance");
+            }
+
+            var a = new Foo(); // 这时候a.constructor 指向了Foo.prototype.constructor
+
+            // Foo.prototype.constructor = {}; //这样 constructor 就被修改了
+            Foo.prototype = {};
+
+            console.log(a.constructor); // 还是Foo，a.constructor为什么不是Foo.prototype.constructor？ 
+            //https://stackoverflow.com/questions/9267157/why-is-it-impossible-to-change-constructor-function-from-prototype
+            // What is happening is that Rabbit.prototype.constructor is just a pointer to the original constructor (function Rabit(){...})
+
+
+            console.log(Foo.prototype.constructor); // 已经变成了Object 
+
+            console.log(a.constructor === Foo.prototype.constructor);
+
+            var a2 = new Foo();
+
+            console.log(a2.constructor); // Object, 因为Foo.prototype已经被修改了
+
+            console.log(Foo.prototype.constructor);
+
+            console.log(a2.constructor === Foo.prototype.constructor);
+
+
+		</script>
+	</head>
+	<body onload="init()">
+    </body>
+</html>

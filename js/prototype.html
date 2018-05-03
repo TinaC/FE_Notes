@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>prototype</title>
+		<meta charset="utf-8">
+		<script>
+            function init() {
+
+            }
+
+            /**
+            Note: If you use the built-in .bind(..) utility to make a hard-bound function (see Chapter 2), the function created will not have a .prototype property. Using instanceof with such a function transparently substitutes the .prototype of the target function that the hard-bound function was created from.
+
+                It's fairly uncommon to use hard-bound functions as "constructor calls", but if you do, it will behave as if the original target function was invoked instead, which means that using instanceof with a hard-bound function also behaves according to the original function.
+            */
+            function foo() {
+                console.log(this.a)
+            }
+
+            var obj = {
+                a:2
+            }
+
+            var bar = function() {
+                foo.call(obj);
+            }
+
+            var hard_bind = new bar();
+
+            // function Foo(name) {
+            //     this.name = name;
+            // }
+
+            // Foo.prototype.myName = function() {
+            //     return this.name;
+            // };
+
+            // function Bar(name,label) {
+            //     Foo.call( this, name );
+            //     this.label = label;
+            // }
+
+            // // here, we make a new `Bar.prototype`
+            // // linked to `Foo.prototype`
+            // Bar.prototype = Object.create( Foo.prototype );
+
+            // // Beware! Now `Bar.prototype.constructor` is gone,
+            // // and might need to be manually "fixed" if you're
+            // // in the habit of relying on such properties!
+
+            // Bar.prototype.myLabel = function() {
+            //     return this.label;
+            // };
+
+            // var a = new Bar( "a", "obj a" );
+
+            // a.myName(); // "a"
+            // a.myLabel(); // "obj a"
+
+
+		</script>
+	</head>
+	<body onload="init()">
+    </body>
+</html>

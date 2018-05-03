@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Object loop</title>
+		<meta charset="utf-8">
+		<script>
+            function init() {
+
+            }
+
+            var anotherObject = {
+                a: 2
+            };
+
+            Object.defineProperty(
+                anotherObject,
+                "prototype_non_enumerable",
+                { enumerable: false, value: "prototype_non_enumerable_value" }
+            );
+
+            // create an object linked to `anotherObject`
+            var myObject = Object.create( anotherObject );
+
+            Object.defineProperty(
+                myObject,
+                "non_enumerable",
+                { enumerable: false, value: "non_enumerable_value" }
+            );
+
+            for (var k in myObject) {
+                console.log("in found: " + k); 
+            }
+            // found: a
+
+            // in: 包含整条原型链的属性，无论属性是否可枚举
+            console.log("a" in myObject); // true
+            console.log("prototype_non_enumerable" in myObject); // true
+            console.log("non_enumerable" in myObject); // true
+
+            for(var key in myObject) {
+                console.log(key); // 包含原型链上的，不包含不可枚举的
+                if (hasOwnProperty.hasOwnProperty(key)) {
+                    console.log("hasOwnProperty");
+                    console.log(key);
+                }
+            }
+		</script>
+	</head>
+	<body onload="init()">
+    </body>
+</html>
