@@ -5,15 +5,18 @@ import './index.css';
 // Square is a React component class, or React component type.
 // A component takes in parameters, called props, and returns a hierarchy of views to display via the render method.
 class Square extends React.Component {
-    constructor(props) {
-        // es6 class的要求
-        super(props);
-        // this.state should be considered private to the component. 
-        // 这时state是属于每个Square的
-        this.state = {
-            value: null,
-        }
-    }
+    // state都挪到parent去了
+    // constructor(props) {
+    //     // es6 class的要求
+    //     super(props);
+    //     // this.state should be considered private to the component. 
+    //     // 这时state是属于每个Square的
+    //     // component state is considered private, we can’t update Board’s state directly from Square.
+    //     // 不能通过Square直接更新Board的state
+    //     this.state = {
+    //         value: null,
+    //     }
+    // }
 
     // The render method returns a description of what you want to render, and then React takes that description and renders it to the screen.
     // render returns a React element
@@ -21,9 +24,9 @@ class Square extends React.Component {
       return (
         // 这里用的html, 也可以用JSX
         // 传递给onClick prop 的是一个函数，如果是onClick={alert('click')} 会立即执行，为啥？onClick又没被触发？  onClick={() => alert('click')} 是对的
-        <button className="square" onClick={() => this.setState({value: 'X'})}>      
-            {this.state.value
-            /* {this.props.value} */}
+        // this.setState({value: 'X'} 被替换，使用parent的props function 
+        <button className="square" onClick={() => this.props.onClick()}>      
+          {this.props.value}
         </button>
       );
     }
@@ -31,9 +34,24 @@ class Square extends React.Component {
   
   // the Board component can tell each Square what to display, like how we made each square display its index earlier. 由parent component来控制state, 便于保证children状态同步
   class Board extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        square: Array(9).fill(null),
+      }
+    }
+
     renderSquare(i) {
-        // pass a value prop to the Square
-      return <Square value={i}/>;
+      // pass a value prop i to the Square
+      // onClick需要在 Board 定义，是因为需要传递 Board 的 prop
+      return ( // 加个括号防止js在后面插入分号
+        <Square
+          // passing down two props (value & onClick) from Board to Square
+          value={this.state.squares[i]}
+          // conventional in React apps to use on* names for the attributes and handle* for the handler methods.
+          onClick={() => this.handleClick(i)}
+        />
+      );
     }
   
     render() {
