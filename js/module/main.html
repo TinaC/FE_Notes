@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<script type=module>
+      console.log(name); // 桃翁
+      setName('不要脸');
+
+      console.log(name); // 桃翁, 不能被修改？ local的name被修改，但是module里的name不会
+
+      import { name, setName } from './source.js';
+		</script>
+	</head>
+	<body>
+  </body>
+</html>

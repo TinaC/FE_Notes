@@ -1,0 +1,8 @@
+.filters li{
+  display: inline;
+}
+
+.filters li a {
+  margin: 3px;
+  padding: 3px 7px;
+}
