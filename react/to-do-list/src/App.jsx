@@ -27,7 +27,7 @@ class TodoItem extends Component {
           <input 
             type="checkbox" 
             checked={todo.completed}
-            onChange= 
+            onChange={this.props.handleChange}
           />
           <label htmlFor="">{todo.title}</label>
           <button>delete</button>
