@@ -18,8 +18,22 @@ class Footer extends Component {
 }
 
 class TodoItem extends Component {
+  toggleComplete = () => {
+    console.log(this);
+  }
+
+  // deleteItem(e) {
+
+  // }
+
+
+
   render() {
     const todo = this.props.todo;
+
+    function deleteItem(e) {
+      console.log(this);
+    }
 
     return ( 
       <li className={todo.completed ? 'completed' : ''}>
@@ -27,10 +41,10 @@ class TodoItem extends Component {
           <input 
             type="checkbox" 
             checked={todo.completed}
-            onChange= 
+            onChange={this.props.toggleComplete}
           />
           <label htmlFor="">{todo.title}</label>
-          <button>delete</button>
+          <button onClick={deleteItem}>delete</button>
         </div>
       
       </li>
@@ -50,6 +64,10 @@ class Header extends Component {
 }
 
 class App extends Component {
+  toggleComplete = (e) => {
+
+  }
+
   render() {
     const rows = [];
     const todos = this.props.todos;
@@ -70,7 +88,7 @@ class App extends Component {
 
     todos.forEach((todo) => {
       rows.push(
-        <TodoItem key={todo.id} todo={todo}/>
+        <TodoItem key={todo.id} todo={todo} toggleComplete={this.toggleComplete}/>
       );
 
     });
@@ -86,7 +104,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  todos: PropTypes.object
+  todos: PropTypes.array
 };
 
 Footer.propTypes = {
