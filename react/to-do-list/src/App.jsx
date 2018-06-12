@@ -27,6 +27,14 @@ class TodoItem extends Component {
   // }
 
 
+  constructor(props) {
+    super(props);
+    this.onToggle = this.onToggle.bind(this);
+  }
+
+  onToggle(e) {
+    this.props.onToggle(e.target.value);
+  }
 
   render() {
     const todo = this.props.todo;
@@ -41,7 +49,11 @@ class TodoItem extends Component {
           <input 
             type="checkbox" 
             checked={todo.completed}
+<<<<<<< HEAD
             onChange={this.props.toggleComplete}
+=======
+            onChange={(e) => this.onToggle(e)}
+>>>>>>> 88da4ba80af4551ade3558160c4cdda140248747
           />
           <label htmlFor="">{todo.title}</label>
           <button onClick={deleteItem}>delete</button>
@@ -64,13 +76,53 @@ class Header extends Component {
 }
 
 class App extends Component {
+<<<<<<< HEAD
   toggleComplete = (e) => {
 
+=======
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [
+        {id: 'b2d18a3b-0981-45c8-8083-f7aceed0c5e0', title: 'Sporting Goods', completed: true},
+        {id: 'b2d18a3b-0981-45c8-8083-f7aceed0c5e1', title: ' Goods', completed: true},
+        {id: 'b2d18a3b-0981-45c8-8083-f7aceed0c5e2', title: 'Sporg Goods', completed: false}
+      ]     
+    };
+  }
+
+  toggle(todoToToggle) {
+    const todos = this.state.todos;
+
+    this.setState({
+      todos: todos.map(function(todo) {
+        if(todoToToggle === todo) {
+          todo.completed = !todo.completed;
+        }
+      })
+    });
+    // this.todos = this.todos.map(function (todo) {
+    //   if(todoToToggle === todo) {
+    //     // this.
+    //     this.setState({
+          
+    //     });
+    //   }
+
+    //   return todo !== todoToToggle ?
+    //     todo :
+    //     // state immutability is important
+    //     {...todo, completed: !todo.completed};
+    // });
+    // this.setState({
+
+    // });
+>>>>>>> 88da4ba80af4551ade3558160c4cdda140248747
   }
 
   render() {
     const rows = [];
-    const todos = this.props.todos;
+    const todos = this.state.todos;
     const initialValue = 0;
     const activeTodoCount = todos.reduce((accumulator, currentValue) => {
       // accumulator的初始值可以指定为initialValue, 如果没有指定，默认就是Array[0]
@@ -88,7 +140,16 @@ class App extends Component {
 
     todos.forEach((todo) => {
       rows.push(
+<<<<<<< HEAD
         <TodoItem key={todo.id} todo={todo} toggleComplete={this.toggleComplete}/>
+=======
+        <TodoItem 
+          key={todo.id} 
+          todo={todo} 
+          // onToggle={this.toggle} 这种方法要重新bind this?
+          onToggle={(i) => this.toggle(i)}
+        />
+>>>>>>> 88da4ba80af4551ade3558160c4cdda140248747
       );
 
     });
