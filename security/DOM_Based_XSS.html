@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>array</title>
+		<meta charset="utf-8">
+		<script>
+            function test() {
+                var str = document.getElementById("text").value;
+                document.getElementById("t").innerHTML = "<a href='" + str + "'>testLink</a>";
+            }
+		</script>
+	</head>
+	<body>
+        <div>input ' onclick=alert(/xss/) //</div>
+        <div>Or input &#x27;&gt;&lt;img src=# onclick=alert(/xss2/)/&gt;&lt;&#x27;</div>
+        <div id="t"></div>
+        <input type="text" id="text" value=""/>
+        <input type="button" id="s" value="write" onclick="test()">
+    </body>
+</html>
