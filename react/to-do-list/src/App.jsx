@@ -24,6 +24,7 @@ class TodoItem extends Component {
 
   render() {
     const todo = this.props.todo;
+
     return (
       <li className={todo.completed ? 'completed' : ''}>
         <div>
@@ -118,6 +119,7 @@ class App extends Component {
       <div className="App">
         <Header style={{backGround:'#000'}}/>
         <ul>
+<<<<<<< HEAD
           {this.props.items.map(item =>
             <TodoItem
               key={item.id}
@@ -126,6 +128,8 @@ class App extends Component {
               onDelete={this.props.onDelete}
             />
           )}
+=======
+>>>>>>> f99dc1c974732401bd436013270ab30b0fe76326
           {rows}
         </ul>
         <Footer count={activeTodoCount}/>
