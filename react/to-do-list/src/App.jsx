@@ -18,6 +18,10 @@ class Footer extends Component {
 }
 
 class TodoItem extends Component {
+  toggleComplete = () => {
+    this.props.onToggleComplete(this.props.todo);
+  }
+
   constructor(props) {
     super(props);
   }
@@ -31,7 +35,7 @@ class TodoItem extends Component {
           <input
             type="checkbox"
             checked={todo.completed}
-            onChange={this.props.onToggleComplete}
+            onChange={this.toggleComplete}
           />
           <label htmlFor="">{todo.title}</label>
           <button onClick={this.props.onDelete}>delete</button>
@@ -66,14 +70,14 @@ class App extends Component {
   }
 
   onToggleComplete(todo) {
-    const todos = this.state.todos;
+    const todos = this.todos;
     this.setState({
       todos: todos.map(item => {
         if(item === todo) {
           todo.completed = !todo.completed;
         }
       })
-    })
+    });
   }
 
   onDelete(todo) {
@@ -86,7 +90,7 @@ class App extends Component {
   }
 
   render() {
-    const rows = [];
+    // const rows = [];
     const todos = this.state.todos;
     const initialValue = 0;
     const activeTodoCount = todos.reduce((accumulator, currentValue) => {
@@ -97,40 +101,41 @@ class App extends Component {
 
       return accumulator;
     }, initialValue);
-    const completedCount = todos.length - activeTodoCount;
+    // const completedCount = todos.length - activeTodoCount;
 
     // var activeTodoCount = todos.reduce(function (accum, todo) {
     //   return todo.completed ? accum : accum + 1;
     // }, 0);
 
     // onDelete={() => this.onDelete(todo)}
-    todos.forEach((todo) => {
-      rows.push(
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onToggleComplete={this.onToggleComplete}
-          onDelete={this.onDelete.bind(todo)}
-        />
-      );
-    });
+    // todos.forEach((todo) => {
+    //   rows.push(
+    //     <TodoItem
+    //       key={todo.id}
+    //       todo={todo}
+    //       onToggleComplete={this.onToggleComplete}
+    //       onDelete={this.onDelete.bind(todo)}
+    //     />
+    //   );
+    // });
 
     return (
       <div className="App">
         <Header style={{backGround:'#000'}}/>
+        <TodoList
+          todo={item}
+          onToggleComplete={this.onToggleComplete}
+          onDelete={this.onDelete}
+        />
         <ul>
-<<<<<<< HEAD
-          {this.props.items.map(item =>
+          {todos.map(item =>
             <TodoItem
               key={item.id}
               todo={item}
-              onToggleComplete={this.props.onToggleComplete}
-              onDelete={this.props.onDelete}
+              onToggleComplete={this.onToggleComplete}
+              onDelete={this.onDelete}
             />
           )}
-=======
->>>>>>> f99dc1c974732401bd436013270ab30b0fe76326
-          {rows}
         </ul>
         <Footer count={activeTodoCount}/>
       </div>
@@ -139,7 +144,10 @@ class App extends Component {
 }
 
 App.propTypes = {
-  todos: PropTypes.array
+  items: PropTypes.array,
+  todos: PropTypes.array,
+  onToggleComplete: PropTypes.func,
+  onDelete: PropTypes.func
 };
 
 Footer.propTypes = {
