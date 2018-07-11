@@ -76,7 +76,6 @@ class Header extends Component {
 }
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -88,8 +87,10 @@ class App extends Component {
     };
   }
 
-  onToggleComplete(todo) {
-    const todos = this.todos;
+  onToggleComplete = (todo) => {
+    console.log(this);
+    console.log(this.state);
+    const todos = this.state.todos;
     this.setState({
       todos: todos.map(item => {
         if(item === todo) {
@@ -99,13 +100,18 @@ class App extends Component {
     });
   }
 
-  onDelete(todo) {
+  onDelete = (e, todo) => {
     console.log(this);
     console.log(arguments);
     const todos = this.state.todos;
     this.setState({
       todos: todos.filter(item => item !== todo )
     });
+  }
+
+  testThis() {
+    console.log(this);
+    console.log(this.state);
   }
 
   render() {
@@ -123,6 +129,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <button onClick={this.testThis}>test this</button>
         <Header style={{backGround:'#000'}}/>
         <TodoList
           todos={todos}
