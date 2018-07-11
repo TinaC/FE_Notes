@@ -18,47 +18,24 @@ class Footer extends Component {
 }
 
 class TodoItem extends Component {
-  toggleComplete = () => {
-    console.log(this);
-  }
-
-  // deleteItem(e) {
-
-  // }
-
-
   constructor(props) {
     super(props);
-    this.onToggle = this.onToggle.bind(this);
-  }
-
-  onToggle(e) {
-    this.props.onToggle(e.target.value);
   }
 
   render() {
     const todo = this.props.todo;
 
-    function deleteItem(e) {
-      console.log(this);
-    }
-
-    return ( 
+    return (
       <li className={todo.completed ? 'completed' : ''}>
         <div>
-          <input 
-            type="checkbox" 
+          <input
+            type="checkbox"
             checked={todo.completed}
-<<<<<<< HEAD
-            onChange={this.props.toggleComplete}
-=======
-            onChange={(e) => this.onToggle(e)}
->>>>>>> 88da4ba80af4551ade3558160c4cdda140248747
+            onChange={this.props.onToggleComplete}
           />
           <label htmlFor="">{todo.title}</label>
-          <button onClick={deleteItem}>delete</button>
+          <button onClick={this.props.onDelete}>delete</button>
         </div>
-      
       </li>
     );
   }
@@ -76,10 +53,7 @@ class Header extends Component {
 }
 
 class App extends Component {
-<<<<<<< HEAD
-  toggleComplete = (e) => {
 
-=======
   constructor(props) {
     super(props);
     this.state = {
@@ -87,37 +61,28 @@ class App extends Component {
         {id: 'b2d18a3b-0981-45c8-8083-f7aceed0c5e0', title: 'Sporting Goods', completed: true},
         {id: 'b2d18a3b-0981-45c8-8083-f7aceed0c5e1', title: ' Goods', completed: true},
         {id: 'b2d18a3b-0981-45c8-8083-f7aceed0c5e2', title: 'Sporg Goods', completed: false}
-      ]     
+      ]
     };
   }
 
-  toggle(todoToToggle) {
+  onToggleComplete(todo) {
     const todos = this.state.todos;
-
     this.setState({
-      todos: todos.map(function(todo) {
-        if(todoToToggle === todo) {
+      todos: todos.map(item => {
+        if(item === todo) {
           todo.completed = !todo.completed;
         }
       })
+    })
+  }
+
+  onDelete(todo) {
+    console.log(this);
+    console.log(arguments);
+    const todos = this.state.todos;
+    this.setState({
+      todos: todos.filter(item => item !== todo )
     });
-    // this.todos = this.todos.map(function (todo) {
-    //   if(todoToToggle === todo) {
-    //     // this.
-    //     this.setState({
-          
-    //     });
-    //   }
-
-    //   return todo !== todoToToggle ?
-    //     todo :
-    //     // state immutability is important
-    //     {...todo, completed: !todo.completed};
-    // });
-    // this.setState({
-
-    // });
->>>>>>> 88da4ba80af4551ade3558160c4cdda140248747
   }
 
   render() {
@@ -138,26 +103,24 @@ class App extends Component {
     //   return todo.completed ? accum : accum + 1;
     // }, 0);
 
+    // onDelete={() => this.onDelete(todo)}
     todos.forEach((todo) => {
       rows.push(
-<<<<<<< HEAD
-        <TodoItem key={todo.id} todo={todo} toggleComplete={this.toggleComplete}/>
-=======
-        <TodoItem 
-          key={todo.id} 
-          todo={todo} 
-          // onToggle={this.toggle} 这种方法要重新bind this?
-          onToggle={(i) => this.toggle(i)}
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onToggleComplete={this.onToggleComplete}
+          onDelete={this.onDelete.bind(todo)}
         />
->>>>>>> 88da4ba80af4551ade3558160c4cdda140248747
       );
-
     });
 
     return (
       <div className="App">
         <Header style={{backGround:'#000'}}/>
-        <ul>{rows}</ul>
+        <ul>
+          {rows}
+        </ul>
         <Footer count={activeTodoCount}/>
       </div>
     );
