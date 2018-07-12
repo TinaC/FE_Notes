@@ -38,7 +38,12 @@ class TodoList extends Component {
 
 class TodoItem extends Component {
   toggleComplete = () => {
+    console.log(this); // this is TodoItem
     this.props.onToggleComplete(this.props.todo);
+  }
+
+  delete = () => {
+    this.props.onDelete(this.props.todo);
   }
 
   constructor(props) {
@@ -57,7 +62,7 @@ class TodoItem extends Component {
             onChange={this.toggleComplete}
           />
           <label htmlFor="">{todo.title}</label>
-          <button onClick={this.props.onDelete}>delete</button>
+          <button onClick={this.delete}>Delete</button>
         </div>
       </li>
     );
@@ -88,30 +93,26 @@ class App extends Component {
   }
 
   onToggleComplete = (todo) => {
-    console.log(this);
-    console.log(this.state);
+    const todos = this.state.todos;
+    const newTodos = todos.map(item => {
+      if(item === todo) {
+        item.completed = !item.completed;
+      }
+      return item;
+    });
+
+    this.setState({
+      todos:newTodos
+    });
+  }
+
+  onDelete = (todo) => {
     const todos = this.state.todos;
     this.setState({
-      todos: todos.map(item => {
-        if(item === todo) {
-          todo.completed = !todo.completed;
-        }
+      todos: todos.filter(item => {
+        return item !== todo;
       })
     });
-  }
-
-  onDelete = (e, todo) => {
-    console.log(this);
-    console.log(arguments);
-    const todos = this.state.todos;
-    this.setState({
-      todos: todos.filter(item => item !== todo )
-    });
-  }
-
-  testThis() {
-    console.log(this);
-    console.log(this.state);
   }
 
   render() {
@@ -129,13 +130,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <button onClick={this.testThis}>test this</button>
         <Header style={{backGround:'#000'}}/>
         <TodoList
           todos={todos}
           onToggleComplete={this.onToggleComplete}
-          onDelete={this.onDelete}
-        />
+          onDelete={this.onDelete}/>
         <Footer count={activeTodoCount}/>
       </div>
     );
@@ -153,8 +152,16 @@ Footer.propTypes = {
   count: PropTypes.number
 };
 
+TodoList.propTypes = {
+  todos: PropTypes.array,
+  onToggleComplete: PropTypes.func,
+  onDelete: PropTypes.func
+};
+
 TodoItem.propTypes = {
-  todo: PropTypes.object
+  todo: PropTypes.object,
+  onToggleComplete: PropTypes.func,
+  onDelete: PropTypes.func
 };
 
 export default App;
