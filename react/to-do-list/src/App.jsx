@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import PropTypes from 'prop-types';
+import uuidv4 from 'uuid/v4';
 import './App.css';
 import Header from './Header';
 import Footer from './Footer';
@@ -40,6 +41,16 @@ class App extends Component {
     });
   }
 
+  onCreate = (title) => {
+    const todos = this.state.todos;
+    const todo = {id: uuidv4(), title: title, completed: false};
+
+    // todos.unshift(todo): do not use this, Treat this.state as if it were immutable.
+    this.setState({
+      todos: [todo, ...todos]
+    });
+  }
+
   render() {
     // const rows = [];
     const todos = this.state.todos;
@@ -55,7 +66,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header style={{backGround:'#000'}}/>
+        <Header style={{backGround:'#000'}} onCreate={this.onCreate}/>
         <TodoList
           todos={todos}
           onToggleComplete={this.onToggleComplete}
