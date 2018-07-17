@@ -11,10 +11,6 @@ class TodoItem extends Component {
     this.props.onDelete(this.props.todo);
   }
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const todo = this.props.todo;
 

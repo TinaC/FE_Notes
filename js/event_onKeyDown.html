@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>event</title>
+    <meta charset="utf-8">
+    <script>
+      function onKeyUp(input) {
+        console.log("onKeyUp: " + input.value);
+      }
+
+      function onKeyDown(input) {
+        console.log("onKeyDown: " + input.value);
+      }
+
+      function onChange(input) {
+        console.log("onChange: " + input.value);
+      }
+    </script>
+  </head>
+  <body>
+    <input
+      type="text"
+      onkeyup="onKeyUp(this)"
+      onkeydown="onKeyDown(this)"
+      onchange="onChange(this)">
+  </body>
+</html>
