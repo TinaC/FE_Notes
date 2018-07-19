@@ -5,12 +5,13 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {input: ''};
+    this.myRef = React.createRef();
   }
 
   create = (event) => {
     var value = event.target.value;
 
-    console.log(value);
+    console.log(this.myRef.current);
 
     if(event.key !== 'Enter'){
       return;
@@ -21,6 +22,10 @@ class Header extends Component {
       this.setState({input : ''});
     }
 
+  }
+
+  componentDidMount() {
+    this.myRef.current.focus();
   }
 
   change = (event) => {
@@ -36,6 +41,7 @@ class Header extends Component {
       <header style={{color:'red'}}>
         <h1>My todos</h1>
         <input
+          ref={this.myRef}
           placeholder="What needs to be done"
           value={this.state.input}
           onChange={this.change}
