@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import FancyButton from './FancyButton';
 import './App.css';
 
+// const ref = React.createRef();
+
+function handleClick() {
+  console.log("click")
+}
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.textInput = React.createRef();
+  }
+
+  componentDidMount() {
+    // ref: intended for FancyButton, but actually be attached to the LogProps component
+    console.log(this.textInput.current);
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <FancyButton
+          label="Click Me"
+          handleClick={handleClick}
+          ref={this.textInput}
+        />
       </div>
     );
   }
