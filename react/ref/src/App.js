@@ -16,6 +16,7 @@ class App extends Component {
 
   componentDidMount() {
     // ref: intended for FancyButton, but actually be attached to the LogProps component
+    // 使用了forwardRef后current变成了FancyButton
     console.log(this.textInput.current);
   }
 
