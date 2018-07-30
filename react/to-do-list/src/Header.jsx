@@ -13,12 +13,28 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {input: ''};
-    this.myRef = React.createRef();
+    // this.myRef = React.createRef();
+
+    this.handleKeyUp = this.keyUp.bind(this);
+    this.handleKeyDown = this.keyUpHandler.bind(this);
   }
 
-  create = (event) => {
+  keyUp(event) {
     var value = event.target.value;
 
+    console.log("keyUp: " + value);
+  }
+
+  keyDown(event) {
+    var value = event.target.value;
+
+    console.log("keyUp: " + value);
+  }
+
+  keyUp = (event) => {
+    var value = event.target.value;
+
+    console.log("keyUp: " + value);
     console.log(this.myRef.current);
 
     if(event.key !== 'Enter'){
@@ -32,10 +48,6 @@ class Header extends Component {
 
   }
 
-  componentDidMount() {
-    this.myRef.current.focus();
-  }
-
   change = (event) => {
     var value = event.target.value;
 
@@ -44,24 +56,23 @@ class Header extends Component {
     // this.setState({input : event.target.value});
   }
 
+  keyDown = (event) => {
+    var value = event.target.value;
+
+    console.log("keyDown: " + value);
+  }
+
   render() {
-    const FancyButton = React.forwardRef((props, ref) => (
-      <button ref={ref} className="FancyButton">
-        {props.children}
-      </button>
-    ));
-    const ref = React.createRef();
 
     return (
       <header style={{color:'red'}}>
-        <FancyButton ref={ref}>Click me!</FancyButton>
         <h1>My todos</h1>
         <input
-          ref={this.myRef}
           placeholder="What needs to be done"
           value={this.state.input}
           onChange={this.change}
-          onKeyUp={this.create}/>
+          onKeyDown={this.keyDown}
+          onKeyUp={this.keyUp}/>
       </header>
     );
   }
