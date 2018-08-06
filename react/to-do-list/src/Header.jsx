@@ -46,6 +46,7 @@ class Header extends Component {
         <h1>My todos</h1>
         <input
           placeholder="What needs to be done"
+          value={this.state.input}
           onKeyUp={this.keyUp}
           onChange={this.change}/>
       </header>
