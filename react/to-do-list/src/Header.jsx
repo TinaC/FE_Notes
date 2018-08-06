@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// function FanceButton(props) {
-//   return (
-//     <button className="FancyButton">
-//       {props.children}
-//     </button>
-//   )
-// }
-
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +10,7 @@ class Header extends Component {
   keyUp = (event) => {
     var value = event.target.value;
 
+    console.log(this)
     console.log("keyUp: " + value);
 
     if(event.key !== 'Enter'){
@@ -28,7 +21,6 @@ class Header extends Component {
       this.props.onCreate(event.target.value);
       this.setState({input : ''});
     }
-
   }
 
   change = (event) => {
@@ -40,10 +32,12 @@ class Header extends Component {
   }
 
   render() {
-
     return (
       <header style={{color:'red'}}>
         <h1>My todos</h1>
+        <input
+          type="checkbox"
+          onChange={this.props.onToggleAllComplete}/>
         <input
           placeholder="What needs to be done"
           value={this.state.input}
@@ -55,7 +49,8 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  onCreate: PropTypes.func
+  onCreate: PropTypes.func,
+  onToggleAllComplete: PropTypes.func
 };
 
 export default Header;

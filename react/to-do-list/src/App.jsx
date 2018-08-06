@@ -18,6 +18,20 @@ class App extends Component {
     };
   }
 
+  onToggleAllComplete = (event) => {
+
+    const checked = event.target.checked;
+    const todos = this.state.todos;
+    const newTodos = todos.map(item => {
+      item.completed = checked;
+      return item;
+    });
+
+    this.setState({
+      todos: newTodos
+    })
+  }
+
   onToggleComplete = (todo) => {
     const todos = this.state.todos;
     const newTodos = todos.map(item => {
@@ -28,7 +42,7 @@ class App extends Component {
     });
 
     this.setState({
-      todos:newTodos
+      todos: newTodos
     });
   }
 
@@ -57,7 +71,7 @@ class App extends Component {
     const initialValue = 0;
     const activeTodoCount = todos.reduce((accumulator, currentValue) => {
       // accumulator的初始值可以指定为initialValue, 如果没有指定，默认就是Array[0]
-      if(currentValue.completed) {
+      if(!currentValue.completed) {
         accumulator++;
       }
 
@@ -66,7 +80,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header style={{backGround:'#000'}} onCreate={this.onCreate}/>
+        <Header
+          style={{backGround:'#000'}}
+          onToggleAllComplete={this.onToggleAllComplete}
+          onCreate={this.onCreate}/>
         <TodoList
           todos={todos}
           onToggleComplete={this.onToggleComplete}
