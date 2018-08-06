@@ -13,29 +13,12 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {input: ''};
-    // this.myRef = React.createRef();
-
-    this.handleKeyUp = this.keyUp.bind(this);
-    this.handleKeyDown = this.keyUpHandler.bind(this);
-  }
-
-  keyUp(event) {
-    var value = event.target.value;
-
-    console.log("keyUp: " + value);
-  }
-
-  keyDown(event) {
-    var value = event.target.value;
-
-    console.log("keyUp: " + value);
   }
 
   keyUp = (event) => {
     var value = event.target.value;
 
     console.log("keyUp: " + value);
-    console.log(this.myRef.current);
 
     if(event.key !== 'Enter'){
       return;
@@ -53,13 +36,7 @@ class Header extends Component {
 
     console.log("change: " + value);
     // set input value, do not use input default behavior, using one-way binding for convenient state control
-    // this.setState({input : event.target.value});
-  }
-
-  keyDown = (event) => {
-    var value = event.target.value;
-
-    console.log("keyDown: " + value);
+    this.setState({input : event.target.value});
   }
 
   render() {
@@ -69,10 +46,8 @@ class Header extends Component {
         <h1>My todos</h1>
         <input
           placeholder="What needs to be done"
-          value={this.state.input}
-          onChange={this.change}
-          onKeyDown={this.keyDown}
-          onKeyUp={this.keyUp}/>
+          onKeyUp={this.keyUp}
+          onChange={this.change}/>
       </header>
     );
   }
