@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {NavLink, Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-
-
 class Footer extends Component {
   render() {
     return (
@@ -15,6 +13,11 @@ class Footer extends Component {
           <li><NavLink to="/completed" activeClassName="selected">Completed</NavLink></li>
           <li><NavLink to="" activeClassName="test">Clear complete</NavLink></li>
         </ul>
+        <Route path='/' render={props => (
+
+        )}/>
+        <Route exact path='/active'/>
+        <Route path='/completed'/>
       </footer>
 
     // <div>
@@ -29,6 +32,7 @@ class Footer extends Component {
 // <li><a href="#/active">Active</a></li>
 // <li><a href="#/completed">Completed</a></li>
 // <li><a href="">Clear complete</a></li>
+
 
 Footer.propTypes = {
   count: PropTypes.number
