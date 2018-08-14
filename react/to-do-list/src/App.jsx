@@ -1,4 +1,5 @@
 import React , { Component } from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
 import './App.css';
@@ -79,17 +80,19 @@ class App extends Component {
     }, initialValue);
 
     return (
-      <div className="App">
-        <Header
-          style={{backGround:'#000'}}
-          onToggleAllComplete={this.onToggleAllComplete}
-          onCreate={this.onCreate}/>
-        <TodoList
-          todos={todos}
-          onToggleComplete={this.onToggleComplete}
-          onDelete={this.onDelete}/>
-        <Footer count={activeTodoCount}/>
-      </div>
+      <Router>
+        <div className="App">
+          <Header
+            style={{backGround:'#000'}}
+            onToggleAllComplete={this.onToggleAllComplete}
+            onCreate={this.onCreate}/>
+          <TodoList
+            todos={todos}
+            onToggleComplete={this.onToggleComplete}
+            onDelete={this.onDelete}/>
+          <Footer count={activeTodoCount}/>
+        </div>
+      </Router>
     );
   }
 }
