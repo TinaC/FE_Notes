@@ -5,20 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script>
+        function init() {
+            var oOutput = document.getElementById("output");
+            var ul = "<ul>";
+            var arrImages = new Array(3);
+
+            arrImages.push(document.getElementById("img1"));
+            arrImages.push(document.getElementById("img2"));
+            arrImages.push(document.getElementById("img3"));
+            
+            arrImages.forEach(function(image){
+                ul += "<li>" 
+                + "image height : " + image.height
+                + "image width : " + image.width
+                + "image style.width : " + image.style.width
+                + "image style.height : " + image.style.height
+                + "</li>"
+            })
+
+            ul += "</ul>";
+            oOutput.innerHTML = ul;
+        }
+    </script>
 </head>
 <body>
     
 </body>
 </html>
 
-
-
 <html>
     <head>
-        <title>height & width</title>
+        <title>height & width</title></title>
     </head>
 
-    <body>
-        <img src="" alt="">
+    <body onload="init()">
+        <div id="output"></div>
+
+        <img id="img1" src="http://www.mozilla.org/images/mozilla-banner.gif" alt="banner"/>
+
+        <img id="img2" src="http://www.mozilla.org/images/mozilla-banner.gif" alt="banner" height="50" width="500"></img>
+
+        <img id="img3" src="http://www.mozilla.org/images/mozilla-banner.gif" alt="banner" style="height: 50px; width: 500px;">
     </body>
 </html>
