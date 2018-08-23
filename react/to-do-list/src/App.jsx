@@ -20,7 +20,6 @@ class App extends Component {
   }
 
   onToggleAllComplete = (event) => {
-
     const checked = event.target.checked;
     const todos = this.state.todos;
     const newTodos = todos.map(item => {

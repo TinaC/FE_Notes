@@ -1,0 +1,89 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MDN DOM examples</title>
+    <script>
+        function init() {
+            var oOutput = document.getElementById("output");
+            var ul = "<ul>";
+            var arrImages = new Array(3);
+
+            arrImages.push(document.getElementById("img1"));
+            arrImages.push(document.getElementById("img2"));
+            arrImages.push(document.getElementById("img3"));
+
+            arrImages.forEach(function(image){
+                ul += "<li>"
+                + "image height : " + image.height
+                + ", <pre>  </pre>image width : " + image.width
+                + ", image style.width : " + image.style.width
+                + ", image style.height : " + image.style.height
+                + "<\/li>"
+            })
+
+            ul += "</ul>";
+            oOutput.innerHTML = ul;
+        }
+
+        function setBorderWidth(width) {
+          var img = document.getElementById("img1");
+          img.style.borderWidth = width + "px";
+        }
+
+        function changeText() {
+          var text = document.getElementById("text");
+
+          text.style.color = "blue";
+          text.style.fontSize = "18pt";
+        }
+
+        function getStyles() {
+          var styles = document.styleSheets;
+
+          for(var i = 0; i < styles.length; i++) {
+            for(var j = 0; j < styles[i].cssRules.length; j++) {
+              console.log( styles[i].cssRules[j].selectorText + "\n" );
+              console.log( styles[i].cssRules[j].cssText + "\n" );
+            }
+          }
+        }
+    </script>
+    <style>
+      body {
+        background-color: aquamarine;
+      }
+      p {
+        font-face: Arial; font-size: 10pt; margin-left: .125in;
+      }
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+
+<html>
+    <head>
+        <title>height & width</title></title>
+    </head>
+
+    <body onload="init()">
+        <div id="output"></div>
+
+        <input type="button" value="make border 5px" onclick="setBorderWidth(5)">
+        <button onclick="setBorderWidth(20)">make border 20px</button>
+        <button onclick="changeText()">change linker style</button>
+        <button onclick="getStyles()">get styleSheets</button>
+
+        <p id="text" onclick="window.location.href = 'http://www.cnn.com/';">linker</p>
+
+        <img id="img1" style="border: 5px green solid" src="http://www.mozilla.org/images/mozilla-banner.gif" alt="banner"/>
+
+        <img id="img2" src="http://www.mozilla.org/images/mozilla-banner.gif" alt="banner" height="50" width="500"></img>
+
+        <img id="img3" src="http://www.mozilla.org/images/mozilla-banner.gif" alt="banner" style="height: 50px; width: 500px;">
+    </body>
+</html>

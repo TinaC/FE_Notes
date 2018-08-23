@@ -14,7 +14,7 @@ class Footer extends Component {
           <li><NavLink to="" activeClassName="test">Clear complete</NavLink></li>
         </ul>
         <Route path='/' render={props => (
-
+          this.setState()
         )}/>
         <Route exact path='/active'/>
         <Route path='/completed'/>

@@ -4,19 +4,23 @@
 		<title>Count down</title>
 		<meta charset="utf-8">
 		<script>
-            "use strict"
-            
-            function onStart() {
-                var time = document.getElementById("time");
+      "use strict"
 
-                setInterval(function() {
-                    time.value = time.value --;
-                }, 1000);
-            }
+      function onStart() {
+        var time = document.getElementById("time");
+
+        var value = document.getElementById("input").value;
+        debugger
+
+        setInterval(function() {
+          time.textContent = --time.textContent;
+        }, 10);
+      }
 		</script>
 	</head>
 	<body>
         <button type="button" onclick="onStart()">start</button>
         <span id="time">60</span>
+        <input id="input" name="searchTxt" type="text" maxlength="512" id="searchTxt" class="searchField"/>
     </body>
 </html>

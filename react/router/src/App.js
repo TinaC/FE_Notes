@@ -9,21 +9,38 @@ const App = () => (
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/about">render inline function</Link>
         </li>
         <li>
-          <Link to="/topics">Topics</Link>
+          <Link to="/cool">render wrapping/composing</Link>
+        </li>
+        <li>
+          <Link to="/topics">component</Link>
         </li>
       </ul>
 
       <hr />
 
       <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
+      {/* convenient inline rendering */}
+      <Route path="/about" render={(match, location, history) => <div>render function</div>} />
+      <FadingRoute path="/cool" component={About}/>
+
       <Route path="/topics" component={Topics} />
     </div>
   </Router>
 );
+
+// wrapping/composing
+const FadingRoute = ({ component: Component, ...rest }) => {
+  console.log(rest) // {path: "/cool"}
+  return (
+   <Route {...rest} render={props => (
+    // <FadeIn>
+      <Component {...props}/>
+    // </FadeIn>
+  )}/>
+)}
 
 const Home = () => (
   <div>
@@ -37,7 +54,7 @@ const About = () => (
   </div>
 );
 
-const Topics = ({ match }) => (
+const Topics = ({ match, location, history  }) => (
   <div>
     <h2>Topics</h2>
     <ul>
@@ -61,7 +78,7 @@ const Topics = ({ match }) => (
   </div>
 );
 
-const Topic = ({ match }) => (
+const Topic = ({ match, location, history }) => (
   <div>
     <h3>{match.params.topicId}</h3>
   </div>
