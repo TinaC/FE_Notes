@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>event stopPropagation</title>
+		<meta charset="utf-8">
+		<script>
+            window.onload = function(e) {
+                var logElement = document.getElementById('log');
+
+                function log(msg) {
+                    logElement.innerHTML += ('<p>' + msg + '</p>');
+                }
+
+                function capture() {
+                    log('capture: ' + this.firstChild.nodeValue.trim());
+                }
+
+                function bubble() {
+                    log('bubble: ' + this.firstChild.nodeValue.trim());
+                }
+
+                function capture2() {
+                    log('capture2: ' + this.firstChild.nodeValue.trim() + " event.eventPhase: " + event.eventPhase);
+                }
+
+                function bubble3() {
+                    log('bubble3: ' + this.firstChild.nodeValue.trim() + " event.eventPhase: " + event.eventPhase);
+                }
+
+                function capture3(event) {
+                    log('capture3: ' + this.firstChild.nodeValue.trim() + " event.eventPhase: " + event.eventPhase);
+                }
+
+                // var divs = document.getElementsByTagName('div');
+                // for (var i = 0; i < divs.length; i++) {
+                //     divs[i].addEventListener('click', capture, true);
+                //     divs[i].addEventListener('click', bubble, false);
+                // }
+
+                document.getElementById("bubble").addEventListener('click', bubble, false);
+                document.getElementById("capture2").addEventListener('click', capture2, true);
+                document.getElementById("bubble3").addEventListener('click', bubble3, false);
+                document.getElementById("bubble3").addEventListener('click', capture3, true);
+                document.getElementById("capture").addEventListener('click', capture, true);
+            }
+        </script>
+        <style>
+            p {
+                line-height: 0;
+            }
+
+            div {
+                display:inline-block;
+                padding: 5px;
+
+                background: #fff;
+                border: 1px solid #aaa;
+                cursor: pointer;
+            }
+
+            div:focus {
+                border: 1px solid #faa;
+                background: #fdd;
+            }
+        </style>
+	</head>
+	<body>
+    <p> If not specified, useCapture defaults to false.</p>
+    <div>1
+        <div>2
+            <div id="capture">capture
+              <div id="bubble3">bubble3 & capture3
+                <div id="capture2">capture2
+                  <div id="bubble">bubble</div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <section id="log"></section>
+  </body>
+</html>

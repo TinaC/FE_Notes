@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event target</title>
+</head>
+<body onload="onInit()">
+  A click shows both <code>event.target</code> and <code>this</code> to compare:
+
+  <form id="form">FORM
+    <div>DIV
+      <p>P</p>
+    </div>
+  </form>
+
+<script>
+  function onInit() {
+    form.onclick = function(event) {
+      event.target.style.backgroundColor = 'yellow';
+
+      // chrome needs some time to paint yellow
+      setTimeout(() => {
+        alert("target = " + event.target.tagName + ", this=" + this.tagName);
+        event.target.style.backgroundColor = ''
+      }, 0);
+    };
+  }
+</script>
+
+</body>
+</html>
