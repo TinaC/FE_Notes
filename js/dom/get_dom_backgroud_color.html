@@ -10,9 +10,22 @@
 	.div3{background-color:yellow;}
 	.div5{opacity:0;}
 	.div6{visibility:hidden;}
+  #d1 {
+    margin-left: 10px;
+    background-color: rgb(173, 216, 230);
+    height: 20px;
+    max-width: 20px;
+  }
 </style>
 </head>
+
 <body style="background-color: blue;">
+  <div id="d1">&nbsp;</div>
+  <button type="button" onclick="cStyles()">getComputedStyle</button>
+  height<input id="t1" type="text" value="1" />
+  max-width<input id="t2" type="text" value="2" />
+  bg-color<input id="t3" type="text" value="3" />
+
 	<div class="parentDiv">
 		<div id="elem1" class="div div1">
 			div1
@@ -67,22 +80,39 @@
 
             return getRealBg;
         })(window.WDS || (window.WDS = {}))
-        
+
+    function cStyles() {
+      var RefDiv = document.getElementById("d1");
+      var txtHeight = document.getElementById("t1");
+      var h_style = document.defaultView.getComputedStyle(RefDiv, null).getPropertyValue("height");
+
+      txtHeight.value = h_style;
+
+      var txtWidth = document.getElementById("t2");
+      var w_style = document.defaultView.getComputedStyle(RefDiv, null).getPropertyValue("width");
+
+      txtWidth.value = w_style;
+
+      var txtBackgroundColor = document.getElementById("t3");
+      var b_style = document.defaultView.getComputedStyle(RefDiv, null).getPropertyValue("background-color");
+
+      txtBackgroundColor.value = b_style;
+    }
 
 		// 检测结果
-		var elem1 = document.getElementById("elem1"),
-			elem2 = document.getElementById("elem2"),
-			elem3 = document.getElementById("elem3"),
-			elem4 = document.getElementById("elem4"),
-			elem5 = document.getElementById("elem5"),
-			elem6 = document.getElementById("elem6");
+		// var elem1 = document.getElementById("elem1"),
+		// 	elem2 = document.getElementById("elem2"),
+		// 	elem3 = document.getElementById("elem3"),
+		// 	elem4 = document.getElementById("elem4"),
+		// 	elem5 = document.getElementById("elem5"),
+		// 	elem6 = document.getElementById("elem6");
 
-		console.log("div1 background-color:"+WDS.getRealBg(elem1));
-		console.log("div2 background-color:"+WDS.getRealBg(elem2));
-		console.log("div3 background-color:"+WDS.getRealBg(elem3));
-		console.log("div4 background-color:"+WDS.getRealBg(elem4));
-		console.log("div5 background-color:"+WDS.getRealBg(elem5));
-		console.log("div6 background-color:"+WDS.getRealBg(elem6));
+		// console.log("div1 background-color:"+WDS.getRealBg(elem1));
+		// console.log("div2 background-color:"+WDS.getRealBg(elem2));
+		// console.log("div3 background-color:"+WDS.getRealBg(elem3));
+		// console.log("div4 background-color:"+WDS.getRealBg(elem4));
+		// console.log("div5 background-color:"+WDS.getRealBg(elem5));
+		// console.log("div6 background-color:"+WDS.getRealBg(elem6));
 	</script>
 </body>
 </html>
