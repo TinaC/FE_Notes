@@ -16,16 +16,99 @@
       background:#dedede;
     }
 
+    header {
+      background: #ccc;
+      color: #fff
+    }
+
+    header img {
+      width: 40px;
+      height: 40px;
+    }
+
     header h1 {
       display: inline;
+    }
+
+    nav {
+      /* display: inline; */
+      float: right;
     }
 
     nav li {
       position: relative;
       display: inline-block;
-
     }
-    header
+
+    nav li > a {
+      text-decoration: none;
+      cursor: default;
+      padding: 10px 15px;
+      display: inline-block;
+    }
+    article, aside {
+      margin: 20px;
+      padding: 20px;
+      background: #fff;
+      /* aviod h2 margin collapse */
+      overflow: auto; 
+      box-shadow: 1px 1px 1px 1px #848484;
+    }
+
+    article h2 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    article figure {
+      width: 120px;
+      border: 1px solid #ccc;
+      margin: 20px;
+    }
+
+    article figcaption {
+      text-align: center;
+    }
+
+    article figure img {
+      width: 100%
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table td {
+      border: 1px solid #ccc;
+    }
+
+    thead {
+      background: #323131;
+      color: #fff;
+    }
+
+    thead td {
+      padding: 5px;
+    }
+
+    tbody tr:last-child {
+      background: #848484;
+    }
+
+    form div + div {
+      margin-top: 1em;
+    }
+
+    form input:focus {
+      border-color: #000;
+    }
+
+    form label {
+      display: inline-block;
+      text-align: right;
+      width: 30%
+    }
   </style>
 
   <body>
@@ -54,15 +137,21 @@
       <div>百度前端技术学院的课程任务是由百度前端工程师专为对前端不同掌握程度的同学设计。我们尽力保证课程内容的质量以及学习难度的合理性，但即使如此，真正决定课程效果的，还是你的每一次思考和实践。</div>
       <p><strong>粗体字string</strong><em>斜体字em: emphasis element</em> 百度前端技术学院的课程任务是由百度前端工程师专为对前端不同掌握程度的同学设计。<a href="http://ife.baidu.com" target="_blank">link to http://ife.baidu.com, open new tab</a>我们尽力保证课程内容的质量以及学习难度的合理性，但即使如此，真正决定课程效果的，还是你的每一次思考和实践。</p>
 
+    </article>
+
+    <article>
       <h3>图片</h3>
 
       <figure>
         <figcaption>好看的图片</figcaption>
         <img src="download.png" alt="Elephant at sunset" />
+      </figure>
 
+      <figure>
         <figcaption>好看的图片</figcaption>
         <img src="download.png" alt="Elephant at sunset" />
       </figure>
+      
     </article>
 
     <article>
@@ -73,7 +162,7 @@
 
       <div>是个表格table</div>
 
-      <table border="1">
+      <table>
         <thead>
           <tr>
             <td>表头</td>
@@ -106,37 +195,55 @@
       <h2>侧栏标题</h2>
       <h3>侧栏注册窗口标题</h3>
 
+      <!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Your_first_HTML_form -->
       <form action="">
-        <label for="email">输入邮箱地址</label>
-        <input type="text" name="email" id="email" placeholder="这是一个文本输入框">
+        <div>
+          <label for="email">输入邮箱地址</label>
+          <input type="text" name="email" id="email" placeholder="这是一个文本输入框">
+        </div>
 
         <div>邮箱地址请按照要求格式输入</div>
 
-        <label for="password">输入密码</label>
-        <input type="password" name="password" id="password" placeholder="这是一个文本输入框">
-
-        <label for="pwd">重复输入邮箱密码</label>
-        <input type="password" name="pwd" id="pwd" placeholder="这是一个文本输入框">
+        <div>
+          <label for="password">输入密码</label>
+          <input type="password" name="password" id="password" placeholder="这是一个文本输入框">
+        </div>
+        
+        <div>
+          <label for="pwd">重复输入邮箱密码</label>
+          <input type="password" name="pwd" id="pwd" placeholder="这是一个文本输入框">
+        </div>
 
         <div>密码为6-16位英文数字</div>
 
-        <span>性别：</span>
-        <input type="radio" value="male"><label for="">男</label>
-        <input type="radio" value="famale"><label for="">女</label>
+        <div>
+          <span>性别：</span>
+          <input type="radio" value="male"><label for="">男</label>
+          <input type="radio" value="famale"><label for="">女</label>
+        </div>
 
-        <label for="">城市</label>
-        <select name="city">
-            <option value="beijing" selected>北京</option>
-            <option value="guangzhou">广州</option>
-        </select>
+        <div>
+          <label for="">城市</label>
+          <select name="city">
+              <option value="beijing" selected>北京</option>
+              <option value="guangzhou">广州</option>
+          </select>
+        </div>
 
-        <span>爱好：</span>
+        <div>
+          <label>爱好：</label>
           <label><input type="checkbox" name="interest" value="sport">运动</label>
           <label><input type="checkbox" name="interest" value="art">艺术</label>
           <label><input type="checkbox" name="interest" value="sic">科学</label>
-          <br/><label>个人描述：<textarea  placeholder="请用一句话描述自己" rows="5" cols="20"></textarea><br/>
+        </div>
+
+        <div>
+          <label>个人描述：<textarea  placeholder="请用一句话描述自己" rows="5" cols="20">        
+          </textarea>
           </label>
-          <button type="submit">确认提交</button>
+        </div>
+
+        <button type="submit">确认提交</button>
       </form>
     </aside>
   </body>
