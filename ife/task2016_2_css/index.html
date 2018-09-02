@@ -45,7 +45,13 @@
       cursor: default;
       padding: 10px 15px;
       display: inline-block;
+      color: #fff;
     }
+
+    nav li:last-child a {
+      color: gray;
+    }
+
     article, aside {
       margin: 20px;
       padding: 20px;
@@ -55,9 +61,15 @@
       box-shadow: 1px 1px 1px 1px #848484;
     }
 
-    article h2 {
+    article h2, aside h2 {
       margin-top: 10px;
       margin-bottom: 10px;
+    }
+
+    aside h2 {
+      border-left: solid gray 3px;
+      padding-left: 4px;
+      padding-right: 4px;
     }
 
     article figure {
@@ -106,9 +118,28 @@
 
     form label {
       display: inline-block;
+      vertical-align: top;
       text-align: right;
       width: 30%
     }
+
+    button[type="submit"] {
+      background: #434391;
+      color: white;
+      display: block;
+      width:100%;
+      padding: 10px;
+      border-radius:5px;
+    }
+
+    .tip {
+      float: right;
+    }
+
+    .tip + div {
+      clear: both;
+    }
+
   </style>
 
   <body>
@@ -202,7 +233,7 @@
           <input type="text" name="email" id="email" placeholder="这是一个文本输入框">
         </div>
 
-        <div>邮箱地址请按照要求格式输入</div>
+        <div class="tip">邮箱地址请按照要求格式输入</div>
 
         <div>
           <label for="password">输入密码</label>
@@ -214,12 +245,12 @@
           <input type="password" name="pwd" id="pwd" placeholder="这是一个文本输入框">
         </div>
 
-        <div>密码为6-16位英文数字</div>
+        <div class="tip clearfix">密码为6-16位英文数字</div>
 
         <div>
-          <span>性别：</span>
-          <input type="radio" value="male"><label for="">男</label>
-          <input type="radio" value="famale"><label for="">女</label>
+          <label>性别</label>
+          <input type="radio" value="male" >男
+          <input type="radio" value="famale">女
         </div>
 
         <div>
@@ -231,16 +262,17 @@
         </div>
 
         <div>
-          <label>爱好：</label>
-          <label><input type="checkbox" name="interest" value="sport">运动</label>
-          <label><input type="checkbox" name="interest" value="art">艺术</label>
-          <label><input type="checkbox" name="interest" value="sic">科学</label>
+          <label>爱好</label>
+          <span><input type="checkbox" name="interest" value="sport">运动</span>
+          <span><input type="checkbox" name="interest" value="art">艺术</span>
+          <span><input type="checkbox" name="interest" value="sic">科学</span>
         </div>
 
         <div>
-          <label>个人描述：<textarea  placeholder="请用一句话描述自己" rows="5" cols="20">        
+          <label>个人描述</label>
+          <textarea  placeholder="请用一句话描述自己" rows="5" cols="20">        
           </textarea>
-          </label>
+          
         </div>
 
         <button type="submit">确认提交</button>
