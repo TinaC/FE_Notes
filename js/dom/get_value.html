@@ -1,0 +1,38 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>get value</title>
+    <script>
+      function init() {
+        var html = document.getElementsByTagName("html")[0];
+
+        console.log(html.innerText); // "Hello"
+        console.log(html.textContent); // 多了: title, style, "World"
+      }
+    </script>
+    <style>
+      body {
+        background-color: aquamarine;
+      }
+      p {
+        font-face: Arial; font-size: 10pt; margin-left: .125in;
+      }
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+
+<html>
+    <head>
+      <title>height & width</title></title>
+    </head>
+
+    <body onload="init()">
+      <span id="invisible">Hello <span style="display: none;">World</span></span>
+    </body>
+</html>
