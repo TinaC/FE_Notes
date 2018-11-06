@@ -6,28 +6,82 @@
 <style>
 #t-daddy { border: 1px solid red }
 #c1 { background-color: pink; }
+
+form {
+  background-color: green;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  cursor: pointer;
+}
+
+div {
+  background-color: blue;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 100px;
+  height: 100px;
+}
+
+p {
+  background-color: red;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+}
+
+body {
+  line-height: 25px;
+  font-size: 16px;
+}
 </style>
 
 <script>
 function stopEvent(ev) {
+  console.log(ev.target);
   c2 = document.getElementById("c2");
   c2.innerHTML = "hello";
 
   // this ought to keep t-daddy from getting the click.
   //ev.stopPropagation();
-  alert("event propagation halted.");
+  // alert("event propagation halted.");
 }
 
 function load() {
-  elem = document.getElementById("tbl1");
+  elem = document.getElementById("t-daddy");
   elem.addEventListener("click", stopEvent, false);
+
+  document.getElementById("form").onclick = function(event) {
+    event.target.style.backgroundColor = 'yellow';
+
+    // chrome needs some time to paint yellow
+    // setTimeout(() => {
+    //   console.log(`form onclick: event.target = ${event.target.tagName}, this = ${this.tagName}, event.currentTarget = ${event.currentTarget}`);
+    //   event.target.style.backgroundColor = ''
+    // }, 0);
+    console.log(`form onclick: event.target = ${event.target.tagName}, this = ${this.tagName}, event.currentTarget = ${event.currentTarget.tagName}`);
+  };
+
+  document.getElementById("p").addEventListener("click", function(event) {
+    console.log(`p onclick: event.target = ${event.target.tagName}, this = ${this.tagName}, event.currentTarget = ${event.currentTarget.tagName}`);
+  }, false);
+
+  document.getElementById("div").addEventListener("click", function(event) {
+    console.log(`div onclick: event.target = ${event.target.tagName}, this = ${this.tagName}, event.currentTarget = ${event.currentTarget.tagName}`);
+  }, false);
 }
 </script>
 </head>
 
 <body onload="load();">
-
-<table id="t-daddy" onclick="alert('hi');">
+  <!-- onclick="alert('hi');" -->
+<table id="t-daddy">
   <tr id="tbl1">
     <td id="c1">one</td>
   </tr>
@@ -35,6 +89,14 @@ function load() {
     <td id="c2">two</td>
   </tr>
 </table>
+
+<p>https://javascript.info/bubbling-and-capturing</p>
+
+<form id="form">FORM
+  <div id="div">DIV
+    <p id="p">P</p>
+  </div>
+</form>
 
 </body>
 </html>
