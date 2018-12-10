@@ -1,0 +1,16 @@
+{
+  "name": "complete_intro_to_react_v4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint **/*.{js,jsx} --quiet"
+  },
+  "author": "tina",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "prettier": "^1.15.3"
+  }
+}
