@@ -1,8 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Pet from "./Pet";
+import pf from "petfinder-client";
+
+// under imports
+const petfinder = pf({
+  key: process.env.API_KEY,
+  secret: process.env.API_SECRET
+});
 
 class App extends React.Component {
+  // inside class, above render
+  componentDidMount() {
+    petfinder.breed.list({ animal: "dog" }).then(console.log, console.error);
+  }
+
   render() {
     return (
       <div>
